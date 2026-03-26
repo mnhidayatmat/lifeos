@@ -5,6 +5,29 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {{-- Main Column --}}
         <div class="lg:col-span-2 space-y-6">
+            {{-- Domino Goal --}}
+            @if($dominoGoal)
+                <x-ui.card class="border-amber-200 dark:border-amber-900/50 bg-amber-50/30 dark:bg-amber-950/10">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-medium text-amber-600 dark:text-amber-400 uppercase tracking-wider">Your #1 Domino Goal</p>
+                            <a href="{{ route('goals.show', $dominoGoal) }}" class="text-sm font-semibold text-gray-900 dark:text-white hover:text-indigo-600">{{ $dominoGoal->title }}</a>
+                        </div>
+                        <span class="text-sm font-bold text-gray-900 dark:text-white">{{ $dominoGoal->progress }}%</span>
+                    </div>
+                    <x-ui.progress-bar :value="$dominoGoal->progress" color="amber" size="xs" class="mt-2" />
+                </x-ui.card>
+            @endif
+
+            {{-- WIP Warning --}}
+            @if($activeProjectCount > 3)
+                <div class="rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 p-3 text-sm text-amber-700 dark:text-amber-300 flex items-center gap-2">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.07 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                    <span>You have <strong>{{ $activeProjectCount }}</strong> active projects. Focus on finishing before starting new ones.</span>
+                </div>
+            @endif
+
             {{-- Today's Tasks --}}
             <x-ui.card>
                 <div class="flex items-center justify-between mb-4">
@@ -80,10 +103,37 @@
                 </x-ui.card>
             @endif
 
+            {{-- Today's Habits --}}
+            @if($todayHabits->isNotEmpty())
+                <x-ui.card>
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="text-base font-semibold text-gray-900 dark:text-white">Habits</h2>
+                        <a href="{{ route('habits.index') }}" class="text-xs text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">View all</a>
+                    </div>
+                    <div class="space-y-1">
+                        @foreach($todayHabits as $habit)
+                            <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
+                                <form method="POST" action="{{ route('habits.toggle', $habit) }}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="w-5 h-5 rounded border-2 {{ $habit->isCompletedToday() ? 'bg-emerald-500 border-emerald-500' : 'border-gray-300 dark:border-gray-600 hover:border-emerald-400' }} flex items-center justify-center transition-colors">
+                                        @if($habit->isCompletedToday())
+                                            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                        @endif
+                                    </button>
+                                </form>
+                                <span class="text-sm {{ $habit->isCompletedToday() ? 'text-gray-400 dark:text-gray-500 line-through' : 'text-gray-900 dark:text-gray-100' }} flex-1">{{ $habit->title }}</span>
+                                <span class="text-xs text-gray-400 dark:text-gray-500 capitalize">{{ $habit->routine }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </x-ui.card>
+            @endif
+
             {{-- Active Goals --}}
             <x-ui.card>
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-base font-semibold text-gray-900">Active Goals</h2>
+                    <h2 class="text-base font-semibold text-gray-900 dark:text-white">Active Goals</h2>
                     <a href="{{ route('goals.index') }}" class="text-xs text-indigo-600 hover:text-indigo-700">View all</a>
                 </div>
                 @if($activeGoals->isEmpty())

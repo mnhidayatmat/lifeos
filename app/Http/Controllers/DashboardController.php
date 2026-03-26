@@ -45,8 +45,23 @@ class DashboardController extends Controller
             ->whereNotIn('status', ['completed', 'abandoned'])
             ->get();
 
+        $dominoGoal = $user->goals()->with('lifeArea')
+            ->where('is_domino', true)
+            ->whereNotIn('status', ['completed', 'abandoned'])
+            ->first();
+
+        // Today's habits
+        $todayHabits = $user->habits()
+            ->where('is_active', true)
+            ->get()
+            ->filter(fn ($h) => $h->isDueToday());
+
+        // WIP warning
+        $activeProjectCount = $user->projects()->where('status', 'in_progress')->count();
+
         return view('dashboard', compact(
-            'todayTasks', 'overdueTasks', 'activeGoals', 'stats', 'projects', 'goals'
+            'todayTasks', 'overdueTasks', 'activeGoals', 'stats',
+            'projects', 'goals', 'dominoGoal', 'todayHabits', 'activeProjectCount'
         ));
     }
 }

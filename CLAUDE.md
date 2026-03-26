@@ -37,7 +37,7 @@ php artisan db:seed --class=AchievementSeeder
 ## Architecture
 
 ### Stack
-Laravel 13 + Blade + Tailwind CSS 3 + Alpine.js. No SPA — all server-rendered with Alpine for interactivity (modals, dropdowns, inline edits). Vite for bundling. SQLite in development.
+Laravel 13 + Blade + Tailwind CSS 3 + Alpine.js. No SPA — all server-rendered with Alpine for interactivity (modals, dropdowns, inline edits). Vite for bundling. MySQL 8 in development (tests use in-memory SQLite).
 
 ### Domain Model Hierarchy
 **Life Areas** → **Goals** → **Projects** → **Tasks** (→ Subtasks). Tasks can also be standalone (no goal/project required). Each Life Area maps to a primary + secondary stat.

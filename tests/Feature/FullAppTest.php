@@ -843,6 +843,205 @@ class FullAppTest extends TestCase
             ->assertStatus(403);
     }
 
+    // ===== HABITS =====
+
+    public function test_habits_page_loads(): void
+    {
+        $this->actingAs($this->admin)
+            ->get('/habits')
+            ->assertStatus(200);
+    }
+
+    public function test_create_habit(): void
+    {
+        $area = $this->admin->lifeAreas()->first();
+
+        $this->actingAs($this->admin)
+            ->post('/habits', [
+                'title' => 'Morning meditation',
+                'routine' => 'morning',
+                'frequency' => 'daily',
+                'effort' => 'small',
+                'life_area_id' => $area->id,
+            ])
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('habits', ['title' => 'Morning meditation', 'user_id' => $this->admin->id]);
+    }
+
+    public function test_toggle_habit_awards_xp(): void
+    {
+        $area = $this->admin->lifeAreas()->first();
+        $habit = $this->admin->habits()->create([
+            'title' => 'Exercise',
+            'routine' => 'morning',
+            'frequency' => 'daily',
+            'effort' => 'medium',
+            'life_area_id' => $area->id,
+        ]);
+
+        $xpBefore = $this->admin->total_xp;
+
+        $this->actingAs($this->admin)
+            ->patch("/habits/{$habit->id}/toggle")
+            ->assertRedirect();
+
+        $this->admin->refresh();
+        $this->assertGreaterThan($xpBefore, $this->admin->total_xp);
+        $this->assertTrue($habit->isCompletedToday());
+    }
+
+    // ===== VISION & IDENTITY =====
+
+    public function test_vision_page_loads(): void
+    {
+        $this->actingAs($this->admin)
+            ->get('/vision')
+            ->assertStatus(200);
+    }
+
+    public function test_update_vision_statement(): void
+    {
+        $this->actingAs($this->admin)
+            ->post('/vision/statement', [
+                'vision_statement' => 'Build something meaningful',
+                'anti_vision' => 'Stay mediocre',
+            ])
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('visions', ['user_id' => $this->admin->id]);
+    }
+
+    public function test_add_identity_trait(): void
+    {
+        $this->actingAs($this->admin)
+            ->post('/vision/traits', [
+                'trait' => 'Disciplined',
+                'linked_stat' => 'discipline',
+                'status' => 'developing',
+            ])
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('identity_traits', ['trait' => 'Disciplined', 'user_id' => $this->admin->id]);
+    }
+
+    // ===== KNOWLEDGE LIBRARY =====
+
+    public function test_resources_page_loads(): void
+    {
+        $this->actingAs($this->admin)
+            ->get('/resources')
+            ->assertStatus(200);
+    }
+
+    public function test_create_resource(): void
+    {
+        $this->actingAs($this->admin)
+            ->post('/resources', [
+                'title' => 'Atomic Habits',
+                'type' => 'book',
+                'author' => 'James Clear',
+                'status' => 'in_progress',
+            ])
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('resources', ['title' => 'Atomic Habits']);
+    }
+
+    // ===== ANALYTICS =====
+
+    public function test_analytics_page_loads(): void
+    {
+        $this->actingAs($this->admin)
+            ->get('/analytics')
+            ->assertStatus(200);
+    }
+
+    // ===== MONTHLY REVIEW =====
+
+    public function test_monthly_review_page(): void
+    {
+        $this->actingAs($this->admin)
+            ->get('/reviews/monthly')
+            ->assertStatus(200);
+    }
+
+    public function test_submit_monthly_review(): void
+    {
+        $this->actingAs($this->admin)
+            ->post('/reviews/monthly', [
+                'biggest_win' => 'Shipped the MVP',
+                'biggest_lesson' => 'Focus matters',
+                'focus_next_month' => 'Growth',
+            ])
+            ->assertRedirect('/reviews/monthly');
+
+        $this->assertDatabaseHas('reviews', ['user_id' => $this->admin->id, 'type' => 'monthly']);
+    }
+
+    // ===== ICE SCORING =====
+
+    public function test_create_project_with_ice(): void
+    {
+        $area = $this->admin->lifeAreas()->first();
+
+        $this->actingAs($this->admin)
+            ->post('/projects', [
+                'title' => 'ICE Project',
+                'life_area_id' => $area->id,
+                'priority' => 'high',
+                'impact_score' => 9,
+                'confidence_score' => 7,
+                'ease_score' => 5,
+            ])
+            ->assertRedirect();
+
+        $project = $this->admin->projects()->where('title', 'ICE Project')->first();
+        $this->assertEquals(9, $project->impact_score);
+        $this->assertEquals(7.0, $project->ice_score);
+    }
+
+    // ===== DOMINO GOAL =====
+
+    public function test_toggle_domino_goal(): void
+    {
+        $goal = $this->admin->goals()->first();
+
+        $this->actingAs($this->admin)
+            ->patch("/goals/{$goal->id}/domino")
+            ->assertRedirect();
+
+        $goal->refresh();
+        $this->assertTrue((bool) $goal->is_domino);
+
+        // Toggle off
+        $this->actingAs($this->admin)
+            ->patch("/goals/{$goal->id}/domino")
+            ->assertRedirect();
+
+        $goal->refresh();
+        $this->assertFalse((bool) $goal->is_domino);
+    }
+
+    public function test_only_one_domino_goal(): void
+    {
+        $area = $this->admin->lifeAreas()->first();
+        $goal1 = $this->admin->goals()->first();
+        $goal2 = $this->admin->goals()->create(['title' => 'Second Goal', 'life_area_id' => $area->id, 'priority' => 'medium']);
+
+        // Set goal1 as domino
+        $this->actingAs($this->admin)->patch("/goals/{$goal1->id}/domino");
+        $goal1->refresh();
+        $this->assertTrue((bool) $goal1->is_domino);
+
+        // Set goal2 as domino — should clear goal1
+        $this->actingAs($this->admin)->patch("/goals/{$goal2->id}/domino");
+        $goal1->refresh();
+        $goal2->refresh();
+        $this->assertFalse((bool) $goal1->is_domino);
+        $this->assertTrue((bool) $goal2->is_domino);
+    }
+
     // ===== ACHIEVEMENT SYSTEM =====
 
     public function test_first_task_achievement_unlocks(): void
