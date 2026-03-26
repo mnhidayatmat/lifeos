@@ -39,7 +39,7 @@
         @else
             <div class="space-y-1">
                 @foreach($tasks as $task)
-                    <x-ui.card :padding="false" class="px-4 py-3">
+                    <x-ui.card :padding="false" class="px-4 py-3 group">
                         <div class="flex items-center gap-3">
                             {{-- Checkbox --}}
                             <form method="POST" action="{{ $task->isCompleted() ? route('tasks.reopen', $task) : route('tasks.complete', $task) }}">
@@ -93,6 +93,15 @@
                                     </svg>
                                 </span>
                             @endif
+
+                            {{-- Delete --}}
+                            <form method="POST" action="{{ route('tasks.destroy', $task) }}" onsubmit="return confirm('Delete this task?')" class="opacity-0 group-hover:opacity-100 transition-opacity">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="p-1 text-gray-300 hover:text-rose-500 transition-colors" title="Delete task">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </form>
                         </div>
                     </x-ui.card>
                 @endforeach
