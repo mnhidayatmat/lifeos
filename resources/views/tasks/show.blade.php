@@ -100,9 +100,12 @@
                     @method('DELETE')
                     <button type="submit" class="text-xs text-rose-500 hover:text-rose-700">Delete task</button>
                 </form>
-                @if($task->isCompleted())
-                    <span class="text-xs text-gray-400">Completed {{ $task->completed_at->format('M j, Y g:ia') }}</span>
-                @endif
+                <div class="flex items-center gap-3">
+                    @if($task->isCompleted())
+                        <span class="text-xs text-gray-400">Completed {{ $task->completed_at->format('M j, Y g:ia') }}</span>
+                    @endif
+                    <a href="{{ route('tasks.edit', $task) }}" class="text-xs font-medium text-indigo-600 hover:text-indigo-700">Edit</a>
+                </div>
             </div>
         </x-ui.card>
     </div>

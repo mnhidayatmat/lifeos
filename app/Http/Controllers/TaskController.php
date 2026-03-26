@@ -91,6 +91,15 @@ class TaskController extends Controller
         return view('tasks.show', compact('task'));
     }
 
+    public function edit(Request $request, Task $task)
+    {
+        $this->authorize($task);
+        $projects = $request->user()->projects()->whereNotIn('status', ['completed', 'archived'])->get();
+        $goals = $request->user()->goals()->whereNotIn('status', ['completed', 'abandoned'])->get();
+
+        return view('tasks.edit', compact('task', 'projects', 'goals'));
+    }
+
     public function update(Request $request, Task $task)
     {
         $this->authorize($task);
@@ -111,7 +120,7 @@ class TaskController extends Controller
         $validated['is_important'] = $request->boolean('is_important');
         $task->update($validated);
 
-        return back()->with('success', 'Task updated.');
+        return redirect()->route('tasks.show', $task)->with('success', 'Task updated.');
     }
 
     public function destroy(Request $request, Task $task)

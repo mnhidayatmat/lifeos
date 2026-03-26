@@ -62,6 +62,15 @@ class ProjectController extends Controller
         return view('projects.show', compact('project'));
     }
 
+    public function edit(Request $request, Project $project)
+    {
+        $this->authorize($project);
+        $areas = $request->user()->lifeAreas()->where('is_active', true)->get();
+        $goals = $request->user()->goals()->whereNotIn('status', ['completed', 'abandoned'])->get();
+
+        return view('projects.edit', compact('project', 'areas', 'goals'));
+    }
+
     public function update(Request $request, Project $project)
     {
         $this->authorize($project);
@@ -80,7 +89,7 @@ class ProjectController extends Controller
 
         $project->update($validated);
 
-        return back()->with('success', 'Project updated.');
+        return redirect()->route('projects.show', $project)->with('success', 'Project updated.');
     }
 
     public function destroy(Request $request, Project $project)
