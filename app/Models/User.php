@@ -7,15 +7,17 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Notifications\BrevoResetPassword;
+use App\Notifications\BrevoVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 #[Fillable(['name', 'email', 'password', 'role', 'archetype', 'onboarding_completed_at', 'total_xp', 'level', 'rank', 'title'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, \Illuminate\Notifications\Notifiable;
 
     public const STATS = [
         'discipline', 'focus', 'knowledge', 'strength',
@@ -102,6 +104,18 @@ class User extends Authenticatable
     public function resources(): HasMany
     {
         return $this->hasMany(Resource::class);
+    }
+
+    // Brevo email overrides
+
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify(new BrevoVerifyEmail);
+    }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new BrevoResetPassword($token));
     }
 
     // Helpers
