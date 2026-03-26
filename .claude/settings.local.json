@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -v)",
+      "Bash(composer -V)",
+      "Read(//d/App/Laravel/**)",
+      "Bash(composer create-project:*)"
+    ]
+  }
+}

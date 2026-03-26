@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* Dark mode form inputs */
+    .dark [type='text'],
+    .dark [type='email'],
+    .dark [type='url'],
+    .dark [type='password'],
+    .dark [type='number'],
+    .dark [type='date'],
+    .dark [type='datetime-local'],
+    .dark [type='month'],
+    .dark [type='search'],
+    .dark [type='tel'],
+    .dark [type='time'],
+    .dark [type='week'],
+    .dark [multiple],
+    .dark textarea,
+    .dark select {
+        background-color: theme('colors.gray.800');
+        border-color: theme('colors.gray.700');
+        color: theme('colors.gray.100');
+    }
+
+    .dark [type='text']:focus,
+    .dark [type='email']:focus,
+    .dark [type='url']:focus,
+    .dark [type='password']:focus,
+    .dark [type='number']:focus,
+    .dark [type='date']:focus,
+    .dark [type='datetime-local']:focus,
+    .dark [type='month']:focus,
+    .dark [type='search']:focus,
+    .dark [type='tel']:focus,
+    .dark [type='time']:focus,
+    .dark [type='week']:focus,
+    .dark [multiple]:focus,
+    .dark textarea:focus,
+    .dark select:focus {
+        border-color: theme('colors.indigo.500');
+        --tw-ring-color: theme('colors.indigo.500');
+    }
+
+    .dark [type='checkbox'],
+    .dark [type='radio'] {
+        background-color: theme('colors.gray.800');
+        border-color: theme('colors.gray.600');
+    }
+
+    .dark [type='checkbox']:checked,
+    .dark [type='radio']:checked {
+        background-color: theme('colors.indigo.500');
+        border-color: theme('colors.indigo.500');
+    }
+
+    /* Dark mode form labels */
+    .dark label {
+        color: theme('colors.gray.300');
+    }
+}
