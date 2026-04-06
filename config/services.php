@@ -41,4 +41,10 @@ return [
         'sender_email' => env('BREVO_SENDER_EMAIL', 'lifeos@coursesme.com'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
+    ],
+
 ];

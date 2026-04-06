@@ -12,7 +12,7 @@ use App\Notifications\BrevoVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-#[Fillable(['name', 'email', 'password', 'role', 'archetype', 'onboarding_completed_at', 'total_xp', 'level', 'rank', 'title'])]
+#[Fillable(['name', 'email', 'password', 'role', 'archetype', 'onboarding_completed_at', 'total_xp', 'level', 'rank', 'title', 'google_id', 'avatar', 'auth_type'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements MustVerifyEmail
 {
