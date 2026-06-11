@@ -9,12 +9,11 @@ class Resource extends Model
 {
     protected $fillable = [
         'life_area_id', 'title', 'type', 'author', 'url',
-        'status', 'notes', 'rating', 'xp_awarded', 'completed_at',
+        'status', 'notes', 'rating', 'completed_at',
     ];
 
     protected $casts = [
         'rating' => 'integer',
-        'xp_awarded' => 'integer',
         'completed_at' => 'datetime',
     ];
 

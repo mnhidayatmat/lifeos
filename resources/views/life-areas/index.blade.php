@@ -46,15 +46,6 @@
                                         <x-ui.badge color="gray" size="xs">Preset</x-ui.badge>
                                     @endif
                                 </div>
-                                <div class="flex items-center gap-3 mt-1">
-                                    <span class="text-xs text-gray-500">
-                                        <span class="font-medium">{{ ucfirst($area->primary_stat) }}</span> (primary)
-                                    </span>
-                                    <span class="text-xs text-gray-400">+</span>
-                                    <span class="text-xs text-gray-500">
-                                        <span class="font-medium">{{ ucfirst($area->secondary_stat) }}</span> (secondary)
-                                    </span>
-                                </div>
                             </div>
 
                             {{-- Stats --}}

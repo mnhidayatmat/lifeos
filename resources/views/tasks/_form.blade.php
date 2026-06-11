@@ -17,7 +17,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Effort</label>
             <div class="flex gap-2">
-                @foreach(['small' => 'S (5 XP)', 'medium' => 'M (15 XP)', 'large' => 'L (30 XP)'] as $value => $label)
+                @foreach(['small' => 'Small', 'medium' => 'Medium', 'large' => 'Large'] as $value => $label)
                     <label class="flex-1">
                         <input type="radio" name="effort" value="{{ $value }}" class="peer sr-only"
                                @checked(old('effort', $task?->effort ?? 'medium') === $value)>

@@ -42,9 +42,10 @@ class Habit extends Model
     public function isDueToday(): bool
     {
         $day = strtolower(now()->format('D')); // mon, tue, etc.
+
         return match ($this->frequency) {
             'daily' => true,
-            'weekdays' => !in_array($day, ['sat', 'sun']),
+            'weekdays' => ! in_array($day, ['sat', 'sun']),
             'weekends' => in_array($day, ['sat', 'sun']),
             'custom' => in_array($day, $this->frequency_days ?? []),
             default => true,

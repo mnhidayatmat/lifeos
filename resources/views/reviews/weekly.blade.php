@@ -6,21 +6,17 @@
         {{-- Auto summary --}}
         <x-ui.card class="mb-6">
             <h3 class="text-sm font-semibold text-gray-900 mb-3">This Week's Summary</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+            <div class="grid grid-cols-3 gap-3 mb-4">
                 <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <p class="text-xl font-bold text-gray-900">{{ $autoData['tasks_completed'] }}</p>
+                    <p class="text-xl font-bold text-gray-900 tabular-nums">{{ $autoData['tasks_completed'] }}</p>
                     <p class="text-xs text-gray-500">Completed</p>
                 </div>
                 <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <p class="text-xl font-bold {{ $autoData['overdue_tasks'] > 0 ? 'text-rose-500' : 'text-gray-900' }}">{{ $autoData['overdue_tasks'] }}</p>
+                    <p class="text-xl font-bold tabular-nums {{ $autoData['overdue_tasks'] > 0 ? 'text-rose-500' : 'text-gray-900' }}">{{ $autoData['overdue_tasks'] }}</p>
                     <p class="text-xs text-gray-500">Overdue</p>
                 </div>
                 <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <p class="text-xl font-bold text-indigo-600">{{ $autoData['xp_earned'] }}</p>
-                    <p class="text-xs text-gray-500">XP Earned</p>
-                </div>
-                <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <p class="text-xl font-bold text-gray-900">{{ $autoData['current_streak'] }}</p>
+                    <p class="text-xl font-bold text-gray-900 tabular-nums">{{ $autoData['current_streak'] }}</p>
                     <p class="text-xs text-gray-500">Day Streak</p>
                 </div>
             </div>
@@ -86,7 +82,7 @@
 
                     <div class="flex justify-end mt-6 pt-4 border-t border-gray-100">
                         <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
-                            Complete Review (+25 XP)
+                            Complete Review
                         </button>
                     </div>
                 </form>

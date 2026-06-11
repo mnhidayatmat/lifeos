@@ -53,9 +53,6 @@
              x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
              @click="sidebarOpen = false" class="fixed inset-0 bg-gray-900/50 dark:bg-black/60 z-30 lg:hidden" style="display: none;"></div>
 
-        {{-- Level Up Modal --}}
-        <x-ui.level-up-modal />
-
         {{-- Toast Container --}}
         <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
     </body>

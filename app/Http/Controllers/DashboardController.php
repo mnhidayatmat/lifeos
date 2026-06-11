@@ -13,9 +13,9 @@ class DashboardController extends Controller
         $todayTasks = $user->tasks()
             ->where(function ($q) {
                 $q->where('due_date', today())
-                  ->orWhere(function ($q2) {
-                      $q2->where('is_recurring', true)->where('status', '!=', 'completed');
-                  });
+                    ->orWhere(function ($q2) {
+                        $q2->where('is_recurring', true)->where('status', '!=', 'completed');
+                    });
             })
             ->where('status', '!=', 'completed')
             ->orderBy('priority', 'desc')
@@ -34,8 +34,6 @@ class DashboardController extends Controller
             ->orderBy('priority', 'desc')
             ->limit(5)
             ->get();
-
-        $stats = $user->stats()->pluck('total_xp', 'stat');
 
         $projects = $user->projects()
             ->whereNotIn('status', ['completed', 'archived'])
@@ -59,9 +57,39 @@ class DashboardController extends Controller
         // WIP warning
         $activeProjectCount = $user->projects()->where('status', 'in_progress')->count();
 
+        // This week summary (real productivity metrics)
+        $weekStart = now()->startOfWeek();
+        $tasksThisWeek = $user->tasks()->where('status', 'completed')
+            ->where('completed_at', '>=', $weekStart)->count();
+        $tasksToday = $user->tasks()->where('status', 'completed')
+            ->whereDate('completed_at', today())->count();
+        $currentStreak = $user->streaks()->where('type', 'daily_task')->value('current_count') ?? 0;
+        $activeGoalCount = $user->goals()->whereIn('status', ['in_progress', 'not_started'])->count();
+
+        // Per life area progress
+        $lifeAreaProgress = $user->lifeAreas()
+            ->where('is_active', true)
+            ->withCount(['goals as active_goals_count' => fn ($q) => $q->whereIn('status', ['in_progress', 'not_started'])])
+            ->get()
+            ->map(function ($area) use ($user, $weekStart) {
+                $completed = $user->tasks()
+                    ->where('status', 'completed')
+                    ->where('completed_at', '>=', $weekStart)
+                    ->where(function ($q) use ($area) {
+                        $q->whereHas('goal', fn ($g) => $g->where('life_area_id', $area->id))
+                            ->orWhereHas('project', fn ($p) => $p->where('life_area_id', $area->id));
+                    })
+                    ->count();
+
+                $area->tasks_this_week = $completed;
+
+                return $area;
+            });
+
         return view('dashboard', compact(
-            'todayTasks', 'overdueTasks', 'activeGoals', 'stats',
-            'projects', 'goals', 'dominoGoal', 'todayHabits', 'activeProjectCount'
+            'todayTasks', 'overdueTasks', 'activeGoals',
+            'projects', 'goals', 'dominoGoal', 'todayHabits', 'activeProjectCount',
+            'tasksThisWeek', 'tasksToday', 'currentStreak', 'activeGoalCount', 'lifeAreaProgress'
         ));
     }
 }

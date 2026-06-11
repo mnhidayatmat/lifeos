@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\LifeArea;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -21,8 +20,6 @@ class LifeAreaController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'color' => 'required|string|max:7',
-            'primary_stat' => 'required|string|in:' . implode(',', User::STATS),
-            'secondary_stat' => 'required|string|in:' . implode(',', User::STATS),
         ]);
 
         $user = $request->user();
@@ -47,8 +44,6 @@ class LifeAreaController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'color' => 'required|string|max:7',
-            'primary_stat' => 'required|string|in:' . implode(',', User::STATS),
-            'secondary_stat' => 'required|string|in:' . implode(',', User::STATS),
         ]);
 
         $lifeArea->update([
@@ -74,11 +69,11 @@ class LifeAreaController extends Controller
 
         $user = $request->user();
 
-        if (!$lifeArea->is_active && $user->lifeAreas()->where('is_active', true)->count() >= 8) {
+        if (! $lifeArea->is_active && $user->lifeAreas()->where('is_active', true)->count() >= 8) {
             return back()->withErrors(['toggle' => 'You can have a maximum of 8 active life areas.']);
         }
 
-        $lifeArea->update(['is_active' => !$lifeArea->is_active]);
+        $lifeArea->update(['is_active' => ! $lifeArea->is_active]);
 
         return back()->with('success', $lifeArea->is_active ? 'Life area activated.' : 'Life area deactivated.');
     }

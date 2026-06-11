@@ -9,70 +9,66 @@ class AchievementSeeder extends Seeder
 {
     public function run(): void
     {
-        $achievements = [
+        // Milestones — meaningful, professional accomplishments. No points, no ranks.
+        $milestones = [
             [
                 'key' => 'first_task',
-                'name' => 'First Step',
+                'name' => 'First task done',
                 'description' => 'Complete your first task',
                 'icon' => 'check-square',
-                'xp_reward' => 10,
             ],
             [
                 'key' => 'first_goal',
-                'name' => 'Goal Setter',
+                'name' => 'First goal achieved',
                 'description' => 'Complete your first goal',
                 'icon' => 'target',
-                'xp_reward' => 50,
+            ],
+            [
+                'key' => 'first_project',
+                'name' => 'First project shipped',
+                'description' => 'Complete your first project',
+                'icon' => 'folder',
             ],
             [
                 'key' => 'streak_7',
-                'name' => 'On Fire',
-                'description' => 'Maintain a 7-day task streak',
+                'name' => 'One week consistent',
+                'description' => 'Stay active 7 days in a row',
                 'icon' => 'trophy',
-                'xp_reward' => 20,
             ],
             [
                 'key' => 'streak_30',
-                'name' => 'Unstoppable',
-                'description' => 'Maintain a 30-day task streak',
+                'name' => 'One month consistent',
+                'description' => 'Stay active 30 days in a row',
                 'icon' => 'trophy',
-                'xp_reward' => 100,
             ],
             [
                 'key' => 'first_weekly_review',
-                'name' => 'Reflector',
+                'name' => 'First weekly review',
                 'description' => 'Complete your first weekly review',
                 'icon' => 'book-open',
-                'xp_reward' => 25,
-            ],
-            [
-                'key' => 'reached_apprentice',
-                'name' => 'Rising Up',
-                'description' => 'Reach the Apprentice rank',
-                'icon' => 'trophy',
-                'xp_reward' => 30,
             ],
             [
                 'key' => 'all_areas_active',
-                'name' => 'Life in Balance',
-                'description' => 'Have activity in all your life areas',
+                'name' => 'Balanced across areas',
+                'description' => 'Keep goals active in all your life areas',
                 'icon' => 'grid',
-                'xp_reward' => 40,
             ],
             [
                 'key' => 'tasks_100',
-                'name' => 'Centurion',
+                'name' => '100 tasks completed',
                 'description' => 'Complete 100 tasks',
                 'icon' => 'check-square',
-                'xp_reward' => 100,
             ],
         ];
 
-        foreach ($achievements as $achievement) {
+        foreach ($milestones as $milestone) {
             Achievement::updateOrCreate(
-                ['key' => $achievement['key']],
-                $achievement
+                ['key' => $milestone['key']],
+                $milestone
             );
         }
+
+        // Remove any milestones from the old gamified set that no longer apply.
+        Achievement::whereNotIn('key', array_column($milestones, 'key'))->delete();
     }
 }

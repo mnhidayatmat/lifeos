@@ -11,7 +11,7 @@ class LifeArea extends Model
 {
     protected $fillable = [
         'name', 'slug', 'color', 'icon', 'is_preset', 'is_active',
-        'sort_order', 'primary_stat', 'secondary_stat',
+        'sort_order',
     ];
 
     protected $casts = [
@@ -21,14 +21,14 @@ class LifeArea extends Model
     ];
 
     public const PRESET_AREAS = [
-        ['name' => 'Work', 'icon' => 'folder', 'color' => '#6366f1', 'primary_stat' => 'discipline', 'secondary_stat' => 'influence'],
-        ['name' => 'Research', 'icon' => 'book-open', 'color' => '#3b82f6', 'primary_stat' => 'knowledge', 'secondary_stat' => 'focus'],
-        ['name' => 'Health', 'icon' => 'target', 'color' => '#ef4444', 'primary_stat' => 'strength', 'secondary_stat' => 'discipline'],
-        ['name' => 'Family', 'icon' => 'user', 'color' => '#ec4899', 'primary_stat' => 'wisdom', 'secondary_stat' => 'influence'],
-        ['name' => 'Finance', 'icon' => 'trophy', 'color' => '#10b981', 'primary_stat' => 'wealth', 'secondary_stat' => 'discipline'],
-        ['name' => 'Learning', 'icon' => 'book-open', 'color' => '#8b5cf6', 'primary_stat' => 'knowledge', 'secondary_stat' => 'discipline'],
-        ['name' => 'Business', 'icon' => 'grid', 'color' => '#f59e0b', 'primary_stat' => 'wealth', 'secondary_stat' => 'influence'],
-        ['name' => 'Personal', 'icon' => 'user', 'color' => '#14b8a6', 'primary_stat' => 'creativity', 'secondary_stat' => 'wisdom'],
+        ['name' => 'Work', 'icon' => 'folder', 'color' => '#6366f1'],
+        ['name' => 'Research', 'icon' => 'book-open', 'color' => '#3b82f6'],
+        ['name' => 'Health', 'icon' => 'target', 'color' => '#ef4444'],
+        ['name' => 'Family', 'icon' => 'user', 'color' => '#ec4899'],
+        ['name' => 'Finance', 'icon' => 'trophy', 'color' => '#10b981'],
+        ['name' => 'Learning', 'icon' => 'book-open', 'color' => '#8b5cf6'],
+        ['name' => 'Business', 'icon' => 'grid', 'color' => '#f59e0b'],
+        ['name' => 'Personal', 'icon' => 'user', 'color' => '#14b8a6'],
     ];
 
     protected static function booted(): void

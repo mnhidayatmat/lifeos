@@ -32,7 +32,7 @@ class AchievementService
             'streak_7' => $user->streaks()->where('current_count', '>=', 7)->exists(),
             'streak_30' => $user->streaks()->where('current_count', '>=', 30)->exists(),
             'first_weekly_review' => $user->reviews()->where('type', 'weekly')->whereNotNull('completed_at')->exists(),
-            'reached_apprentice' => $user->level >= 6,
+            'first_project' => $user->projects()->where('status', 'completed')->exists(),
             'all_areas_active' => $user->lifeAreas()->where('is_active', true)->count() >= 3
                 && $user->lifeAreas()->where('is_active', true)->get()->every(fn ($area) => $area->goals()->exists()),
             'tasks_100' => $user->tasks()->where('status', 'completed')->count() >= 100,
@@ -46,11 +46,6 @@ class AchievementService
             'achievement_id' => $achievement->id,
             'unlocked_at' => now(),
         ]);
-
-        // Award bonus XP
-        if ($achievement->xp_reward > 0) {
-            $user->increment('total_xp', $achievement->xp_reward);
-        }
 
         event(new AchievementUnlocked($user, $achievement));
     }

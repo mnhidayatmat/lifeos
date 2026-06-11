@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Events\StreakMilestoneReached;
 use App\Models\Streak;
 use App\Models\User;
-use Carbon\Carbon;
 
 class StreakService
 {
@@ -33,7 +31,7 @@ class StreakService
             ]);
         }
         // Grace period (missed one day)
-        elseif ($lastActive && $lastActive->equalTo($today->subDays(2)) && !$streak->grace_used) {
+        elseif ($lastActive && $lastActive->equalTo($today->subDays(2)) && ! $streak->grace_used) {
             $streak->increment('current_count');
             $streak->update([
                 'last_active_date' => today(),
@@ -54,21 +52,7 @@ class StreakService
             $streak->update(['longest_count' => $streak->current_count]);
         }
 
-        // Check milestones
-        $this->checkMilestones($user, $streak);
-
         return $streak;
-    }
-
-    public function checkMilestones(User $user, Streak $streak): void
-    {
-        $milestones = [7, 30, 100];
-
-        foreach ($milestones as $milestone) {
-            if ($streak->current_count === $milestone) {
-                event(new StreakMilestoneReached($user, $streak, $milestone));
-            }
-        }
     }
 
     public function expireStale(): int

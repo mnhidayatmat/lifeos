@@ -26,11 +26,12 @@
                                 @if($review->auto_summary)
                                     <p class="text-xs text-gray-500 mt-1">
                                         {{ $review->auto_summary['tasks_completed'] ?? 0 }} tasks completed
-                                        &middot; {{ $review->auto_summary['xp_earned'] ?? 0 }} XP earned
                                     </p>
                                 @endif
                             </div>
-                            <span class="text-xs font-medium text-indigo-600">+{{ $review->xp_awarded }} XP</span>
+                            @if($review->completed_at)
+                                <svg class="w-5 h-5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            @endif
                         </div>
                     </x-ui.card>
                 @endforeach

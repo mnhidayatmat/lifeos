@@ -16,37 +16,29 @@
             <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-3">{{ now()->format('F Y') }} Summary</h3>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
                 <div class="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <p class="text-xl font-bold text-gray-900 dark:text-white">{{ $autoData['tasks_completed'] }}</p>
+                    <p class="text-xl font-bold text-gray-900 dark:text-white tabular-nums">{{ $autoData['tasks_completed'] }}</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400">Tasks Done</p>
                 </div>
                 <div class="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <p class="text-xl font-bold text-emerald-600">{{ $autoData['goals_completed'] }}</p>
+                    <p class="text-xl font-bold text-emerald-600 tabular-nums">{{ $autoData['goals_completed'] }}</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400">Goals Completed</p>
                 </div>
                 <div class="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <p class="text-xl font-bold text-indigo-600">{{ number_format($autoData['total_xp']) }}</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">XP Earned</p>
+                    <p class="text-xl font-bold text-gray-900 dark:text-white tabular-nums">{{ $autoData['goals_in_progress'] }}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Goals In Progress</p>
                 </div>
                 <div class="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <p class="text-xl font-bold text-gray-900 dark:text-white">{{ $autoData['reviews_completed'] }}</p>
+                    <p class="text-xl font-bold text-gray-900 dark:text-white tabular-nums">{{ $autoData['reviews_completed'] }}</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400">Reviews Done</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3">
-                @if($autoData['best_week'])
-                    <div class="p-3 bg-indigo-50 dark:bg-indigo-950/30 rounded-lg">
-                        <p class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">Best Week</p>
-                        <p class="text-sm font-semibold text-indigo-800 dark:text-indigo-300">{{ $autoData['best_week'] }} ({{ $autoData['best_week_xp'] }} XP)</p>
-                    </div>
-                @endif
-                @if($autoData['level_now'] > $autoData['level_start'])
-                    <div class="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
-                        <p class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">Level Growth</p>
-                        <p class="text-sm font-semibold text-emerald-800 dark:text-emerald-300">{{ $autoData['level_start'] }} &rarr; {{ $autoData['level_now'] }}</p>
-                    </div>
-                @endif
-            </div>
+            @if($autoData['best_week'])
+                <div class="p-3 bg-indigo-50 dark:bg-indigo-950/30 rounded-lg">
+                    <p class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">Most productive week</p>
+                    <p class="text-sm font-semibold text-indigo-800 dark:text-indigo-300">{{ $autoData['best_week'] }} — {{ $autoData['best_week_count'] }} {{ \Illuminate\Support\Str::plural('task', $autoData['best_week_count']) }} completed</p>
+                </div>
+            @endif
         </x-ui.card>
 
         @if($existing?->isCompleted())
@@ -88,7 +80,7 @@
 
                     <div class="flex justify-end mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
                         <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
-                            Complete Review (+25 XP)
+                            Complete Review
                         </button>
                     </div>
                 </form>

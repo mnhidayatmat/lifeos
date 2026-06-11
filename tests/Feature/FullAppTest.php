@@ -9,7 +9,6 @@ use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
 use App\Services\OnboardingService;
-use App\Services\XpService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -34,6 +33,7 @@ class FullAppTest extends TestCase
             'password' => bcrypt('password'),
             'role' => 'admin',
         ]);
+        $this->admin->forceFill(['email_verified_at' => now()])->save();
 
         $onboarding = app(OnboardingService::class);
         $this->admin->update(['archetype' => 'professional']);
@@ -57,6 +57,7 @@ class FullAppTest extends TestCase
             'password' => bcrypt('password'),
             'role' => 'user',
         ]);
+        $this->freshUser->forceFill(['email_verified_at' => now()])->save();
     }
 
     // ===== GUEST ROUTES =====
@@ -130,7 +131,6 @@ class FullAppTest extends TestCase
 
         $this->freshUser->refresh();
         $this->assertTrue($this->freshUser->hasCompletedOnboarding());
-        $this->assertEquals(8, $this->freshUser->stats()->count());
 
         // Step 4: Welcome page
         $this->actingAs($this->freshUser)
@@ -170,8 +170,6 @@ class FullAppTest extends TestCase
             ->post('/life-areas', [
                 'name' => 'Hobbies',
                 'color' => '#ff6600',
-                'primary_stat' => 'creativity',
-                'secondary_stat' => 'wisdom',
             ])
             ->assertRedirect()
             ->assertSessionHas('success');
@@ -191,8 +189,6 @@ class FullAppTest extends TestCase
                 'name' => "Extra Area $i",
                 'slug' => "extra-area-$i",
                 'color' => '#000000',
-                'primary_stat' => 'focus',
-                'secondary_stat' => 'discipline',
             ]);
         }
 
@@ -200,8 +196,6 @@ class FullAppTest extends TestCase
             ->post('/life-areas', [
                 'name' => 'Over Limit',
                 'color' => '#ff0000',
-                'primary_stat' => 'focus',
-                'secondary_stat' => 'discipline',
             ])
             ->assertRedirect()
             ->assertSessionHasErrors('name');
@@ -227,8 +221,6 @@ class FullAppTest extends TestCase
             ->put("/life-areas/{$area->id}", [
                 'name' => 'Renamed Area',
                 'color' => '#123456',
-                'primary_stat' => 'wealth',
-                'secondary_stat' => 'influence',
             ])
             ->assertRedirect();
 
@@ -242,8 +234,6 @@ class FullAppTest extends TestCase
             'name' => 'Temp Area',
             'slug' => 'temp-area',
             'color' => '#000',
-            'primary_stat' => 'focus',
-            'secondary_stat' => 'discipline',
         ]);
 
         $this->actingAs($this->admin)
@@ -487,36 +477,29 @@ class FullAppTest extends TestCase
             ->assertSee('Show Task');
     }
 
-    public function test_task_complete_awards_xp(): void
+    public function test_task_complete_marks_completed(): void
     {
         $goal = $this->admin->goals()->first();
         $task = $this->admin->tasks()->create([
-            'title' => 'XP Task',
+            'title' => 'Finish report',
             'effort' => 'large',
             'goal_id' => $goal->id,
         ]);
-
-        $xpBefore = $this->admin->total_xp;
 
         $this->actingAs($this->admin)
             ->patch("/tasks/{$task->id}/complete")
             ->assertRedirect();
 
         $task->refresh();
-        $this->admin->refresh();
 
         $this->assertEquals('completed', $task->status);
-        $this->assertGreaterThan(0, $task->xp_awarded);
-        $this->assertGreaterThan($xpBefore, $this->admin->total_xp);
-
-        // Goal-linked large = 30 * 1.2 = 36 XP
-        $this->assertEquals(36, $task->xp_awarded);
+        $this->assertNotNull($task->completed_at);
     }
 
-    public function test_task_complete_standalone_xp(): void
+    public function test_task_complete_updates_streak(): void
     {
         $task = $this->admin->tasks()->create([
-            'title' => 'Standalone XP',
+            'title' => 'Daily standup',
             'effort' => 'medium',
         ]);
 
@@ -524,9 +507,9 @@ class FullAppTest extends TestCase
             ->patch("/tasks/{$task->id}/complete")
             ->assertRedirect();
 
-        $task->refresh();
-        // Standalone medium = 15 * 1.0 = 15 XP
-        $this->assertEquals(15, $task->xp_awarded);
+        $streak = $this->admin->streaks()->where('type', 'daily_task')->first();
+        $this->assertNotNull($streak);
+        $this->assertEquals(1, $streak->current_count);
     }
 
     public function test_task_reopen(): void
@@ -545,35 +528,6 @@ class FullAppTest extends TestCase
         $task->refresh();
         $this->assertEquals('pending', $task->status);
         $this->assertNull($task->completed_at);
-    }
-
-    public function test_task_reopen_revokes_xp(): void
-    {
-        $goal = $this->admin->goals()->first();
-        $task = $this->admin->tasks()->create([
-            'title' => 'Revoke XP Task',
-            'effort' => 'large',
-            'goal_id' => $goal->id,
-        ]);
-
-        // Complete — should award 36 XP
-        $this->actingAs($this->admin)
-            ->patch("/tasks/{$task->id}/complete");
-
-        $this->admin->refresh();
-        $xpAfterComplete = $this->admin->total_xp;
-        $task->refresh();
-        $this->assertEquals(36, $task->xp_awarded);
-
-        // Reopen — should revoke 36 XP
-        $this->actingAs($this->admin)
-            ->patch("/tasks/{$task->id}/reopen");
-
-        $this->admin->refresh();
-        $task->refresh();
-        $this->assertEquals(0, $task->xp_awarded);
-        $this->assertEquals($xpAfterComplete - 36, $this->admin->total_xp);
-        $this->assertEquals('pending', $task->status);
     }
 
     public function test_task_complete_json(): void
@@ -738,22 +692,14 @@ class FullAppTest extends TestCase
             ->assertStatus(200);
     }
 
-    // ===== PROGRESSION =====
+    // ===== MILESTONES =====
 
-    public function test_progression_page(): void
+    public function test_milestones_page(): void
     {
         $this->actingAs($this->admin)
-            ->get('/progression')
+            ->get('/milestones')
             ->assertStatus(200)
-            ->assertSee('Character Stats');
-    }
-
-    public function test_achievements_page(): void
-    {
-        $this->actingAs($this->admin)
-            ->get('/progression/achievements')
-            ->assertStatus(200)
-            ->assertSee('First Step');
+            ->assertSee('Milestones');
     }
 
     // ===== NOTIFICATIONS =====
@@ -772,23 +718,6 @@ class FullAppTest extends TestCase
         $this->actingAs($this->admin)
             ->get('/profile')
             ->assertStatus(200);
-    }
-
-    // ===== XP FORMULAS =====
-
-    public function test_xp_level_calculation(): void
-    {
-        $this->assertEquals(1, XpService::calculateLevel(0));
-        $this->assertEquals(2, XpService::calculateLevel(25));
-        $this->assertEquals(3, XpService::calculateLevel(100));
-        $this->assertEquals(5, XpService::calculateLevel(400));
-    }
-
-    public function test_xp_for_level(): void
-    {
-        $this->assertEquals(0, XpService::xpForLevel(1));
-        $this->assertEquals(25, XpService::xpForLevel(2));
-        $this->assertEquals(100, XpService::xpForLevel(3));
     }
 
     // ===== AUTHORIZATION =====
@@ -869,7 +798,7 @@ class FullAppTest extends TestCase
         $this->assertDatabaseHas('habits', ['title' => 'Morning meditation', 'user_id' => $this->admin->id]);
     }
 
-    public function test_toggle_habit_awards_xp(): void
+    public function test_toggle_habit_marks_complete(): void
     {
         $area = $this->admin->lifeAreas()->first();
         $habit = $this->admin->habits()->create([
@@ -880,14 +809,10 @@ class FullAppTest extends TestCase
             'life_area_id' => $area->id,
         ]);
 
-        $xpBefore = $this->admin->total_xp;
-
         $this->actingAs($this->admin)
             ->patch("/habits/{$habit->id}/toggle")
             ->assertRedirect();
 
-        $this->admin->refresh();
-        $this->assertGreaterThan($xpBefore, $this->admin->total_xp);
         $this->assertTrue($habit->isCompletedToday());
     }
 
@@ -917,7 +842,6 @@ class FullAppTest extends TestCase
         $this->actingAs($this->admin)
             ->post('/vision/traits', [
                 'trait' => 'Disciplined',
-                'linked_stat' => 'discipline',
                 'status' => 'developing',
             ])
             ->assertRedirect();

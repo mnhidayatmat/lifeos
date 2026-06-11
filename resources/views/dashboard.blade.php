@@ -161,36 +161,51 @@
             </x-ui.card>
         </div>
 
-        {{-- Progression Sidebar --}}
+        {{-- Insights Sidebar --}}
         <div class="space-y-6">
-            {{-- Level & XP --}}
+            {{-- This Week --}}
             <x-ui.card>
-                <div class="flex items-center justify-between mb-3">
-                    <div>
-                        <p class="text-2xl font-bold text-gray-900">Level {{ Auth::user()->level ?? 1 }}</p>
-                        <x-ui.rank-badge :rank="Auth::user()->rank ?? 'initiate'" />
+                <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">This week</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-3">
+                        <p class="text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $tasksThisWeek }}</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Tasks done</p>
+                    </div>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-3">
+                        <p class="text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $tasksToday }}</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Done today</p>
+                    </div>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-3">
+                        <p class="text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $currentStreak }}<span class="text-sm font-normal text-gray-400"> day{{ $currentStreak === 1 ? '' : 's' }}</span></p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Current streak</p>
+                    </div>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-3">
+                        <p class="text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $activeGoalCount }}</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Active goals</p>
                     </div>
                 </div>
-                @php
-                    $user = Auth::user();
-                    $xpProgress = $user->xpProgress();
-                    $xpNeeded = $user->xpNeeded();
-                @endphp
-                <x-ui.progress-bar :value="$xpProgress" :max="max($xpNeeded, 1)" color="indigo" size="md" :showLabel="true">
-                    XP to next level
-                </x-ui.progress-bar>
-                <p class="mt-2 text-xs text-gray-500">{{ $xpProgress }} / {{ $xpNeeded }} XP</p>
             </x-ui.card>
 
-            {{-- Stats --}}
+            {{-- Life Area Progress --}}
             <x-ui.card>
-                <h3 class="text-sm font-semibold text-gray-900 mb-4">Stats</h3>
-                <div class="space-y-3">
-                    @foreach(\App\Models\User::STATS as $stat)
-                        @php $statXp = $stats[$stat] ?? 0; @endphp
-                        <x-ui.stat-bar :stat="$stat" :value="min($statXp, 100)" />
-                    @endforeach
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Life areas</h3>
+                    <a href="{{ route('analytics.index') }}" class="text-xs text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">Analytics</a>
                 </div>
+                @if($lifeAreaProgress->isEmpty())
+                    <p class="text-sm text-gray-400">No active life areas.</p>
+                @else
+                    <div class="space-y-3">
+                        @foreach($lifeAreaProgress as $area)
+                            <a href="{{ route('life-areas.index') }}" class="flex items-center gap-3 group">
+                                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: {{ $area->color }}"></span>
+                                <span class="text-sm text-gray-700 dark:text-gray-300 flex-1 truncate group-hover:text-gray-900 dark:group-hover:text-white">{{ $area->name }}</span>
+                                <span class="text-xs text-gray-400 dark:text-gray-500">{{ $area->active_goals_count }} goal{{ $area->active_goals_count === 1 ? '' : 's' }}</span>
+                                <span class="text-xs font-medium text-gray-600 dark:text-gray-300 tabular-nums w-10 text-right">{{ $area->tasks_this_week }} <span class="text-gray-400">done</span></span>
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
             </x-ui.card>
         </div>
     </div>

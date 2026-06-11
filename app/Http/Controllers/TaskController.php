@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Events\TaskCompleted as TaskCompletedEvent;
 use App\Models\Task;
-use App\Services\XpService;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -140,38 +139,29 @@ class TaskController extends Controller
             'completed_at' => now(),
         ]);
 
-        // Fire event — triggers XP award, streak update, achievement check
+        // Fire event — updates consistency streak, checks milestones
         event(new TaskCompletedEvent($task));
-        $task->refresh();
 
         if ($request->wantsJson()) {
-            $lifeArea = $task->resolveLifeArea();
             return response()->json([
                 'success' => true,
-                'message' => 'Task completed!',
-                'xp' => $task->xp_awarded,
-                'stat' => $lifeArea?->primary_stat ?? 'discipline',
+                'message' => 'Task completed.',
             ]);
         }
 
-        return back()->with('success', "Task completed! +{$task->xp_awarded} XP");
+        return back()->with('success', 'Task completed.');
     }
 
     public function reopen(Request $request, Task $task)
     {
         $this->authorize($task);
 
-        // Revoke XP before reopening
-        if ($task->xp_awarded > 0) {
-            app(XpService::class)->revokeTaskXp($task);
-        }
-
         $task->update([
             'status' => 'pending',
             'completed_at' => null,
         ]);
 
-        return back()->with('success', 'Task reopened. XP has been returned.');
+        return back()->with('success', 'Task reopened.');
     }
 
     private function authorize(Task $task): void

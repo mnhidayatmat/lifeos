@@ -59,8 +59,8 @@
                     Analytics
                 </x-sidebar-link>
 
-                <x-sidebar-link :href="route('progression.index')" :active="request()->routeIs('progression.*')" icon="trophy">
-                    Profile
+                <x-sidebar-link :href="route('milestones.index')" :active="request()->routeIs('milestones.*')" icon="trophy">
+                    Milestones
                 </x-sidebar-link>
             </div>
         </div>
@@ -74,7 +74,7 @@
             </div>
             <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{{ Auth::user()->name }}</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">Level {{ Auth::user()->level ?? 1 }}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ Auth::user()->email }}</p>
             </div>
             <x-ui.theme-toggle class="!p-1.5" />
         </div>

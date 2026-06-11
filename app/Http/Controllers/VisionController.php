@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\IdentityTrait;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class VisionController extends Controller
@@ -52,7 +51,6 @@ class VisionController extends Controller
     {
         $validated = $request->validate([
             'trait' => 'required|string|max:255',
-            'linked_stat' => 'nullable|in:' . implode(',', User::STATS),
             'status' => 'required|in:aspirational,developing,integrated',
         ]);
 

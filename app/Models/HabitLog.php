@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class HabitLog extends Model
 {
-    protected $fillable = ['habit_id', 'user_id', 'completed_date', 'xp_awarded'];
+    protected $fillable = ['habit_id', 'user_id', 'completed_date'];
 
     protected $casts = [
         'completed_date' => 'date',
-        'xp_awarded' => 'integer',
     ];
 
     public function habit(): BelongsTo

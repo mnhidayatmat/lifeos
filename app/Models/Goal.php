@@ -14,7 +14,6 @@ class Goal extends Model
         'status', 'priority', 'is_domino', 'due_date', 'completed_at',
     ];
 
-
     protected $casts = [
         'target_value' => 'decimal:2',
         'current_value' => 'decimal:2',
@@ -61,6 +60,7 @@ class Goal extends Model
             return 0;
         }
         $completed = $this->tasks()->where('status', 'completed')->count();
+
         return (int) round(($completed / $total) * 100);
     }
 }

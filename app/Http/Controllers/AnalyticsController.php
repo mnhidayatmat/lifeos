@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use Illuminate\Http\Request;
 
 class AnalyticsController extends Controller
@@ -10,12 +11,13 @@ class AnalyticsController extends Controller
     {
         $user = $request->user();
 
-        // XP trend (last 14 days)
-        $xpTrend = [];
+        // Tasks completed trend (last 14 days)
+        $completionTrend = [];
         for ($i = 13; $i >= 0; $i--) {
             $date = today()->subDays($i);
-            $dayXp = $user->xpLogs()->whereDate('created_at', $date)->sum('xp_amount');
-            $xpTrend[] = ['date' => $date->format('M j'), 'xp' => $dayXp];
+            $count = $user->tasks()->where('status', 'completed')
+                ->whereDate('completed_at', $date)->count();
+            $completionTrend[] = ['date' => $date->format('M j'), 'count' => $count];
         }
 
         // Task completion rate (last 7 days)
@@ -41,29 +43,34 @@ class AnalyticsController extends Controller
                 ->where('completed_at', '>=', now()->startOfMonth())
                 ->where(function ($q) use ($area) {
                     $q->whereHas('goal', fn ($g) => $g->where('life_area_id', $area->id))
-                      ->orWhereHas('project', fn ($p) => $p->where('life_area_id', $area->id));
+                        ->orWhereHas('project', fn ($p) => $p->where('life_area_id', $area->id));
                 })
                 ->count();
             $areaBalance[] = ['name' => $area->name, 'color' => $area->color, 'count' => $completions];
         }
+        $areaBalanceMax = collect($areaBalance)->max('count') ?: 1;
 
-        // Stat growth (this week vs last week)
-        $statGrowth = [];
-        foreach (\App\Models\User::STATS as $stat) {
-            $thisWeek = $user->xpLogs()->where('stat', $stat)->where('created_at', '>=', now()->startOfWeek())->sum('xp_amount');
-            $lastWeek = $user->xpLogs()->where('stat', $stat)->whereBetween('created_at', [now()->subWeek()->startOfWeek(), now()->startOfWeek()])->sum('xp_amount');
-            $statGrowth[$stat] = ['this_week' => $thisWeek, 'last_week' => $lastWeek];
-        }
-
-        // Overall stats
+        // Headline metrics
+        $tasksThisWeek = $user->tasks()->where('status', 'completed')
+            ->where('completed_at', '>=', now()->startOfWeek())->count();
+        $tasksThisMonth = $user->tasks()->where('status', 'completed')
+            ->where('completed_at', '>=', now()->startOfMonth())->count();
         $totalTasks = $user->tasks()->where('status', 'completed')->count();
         $totalGoals = $user->goals()->where('status', 'completed')->count();
+        $totalProjects = $user->projects()->where('status', 'completed')->count();
+
+        // Consistency
         $longestStreak = $user->streaks()->max('longest_count') ?? 0;
         $currentStreak = $user->streaks()->where('type', 'daily_task')->value('current_count') ?? 0;
 
+        // Milestones
+        $milestonesUnlocked = $user->achievements()->count();
+        $milestonesTotal = Achievement::count();
+
         return view('analytics.index', compact(
-            'xpTrend', 'completionRate', 'areaBalance', 'statGrowth',
-            'totalTasks', 'totalGoals', 'longestStreak', 'currentStreak'
+            'completionTrend', 'completionRate', 'areaBalance', 'areaBalanceMax',
+            'tasksThisWeek', 'tasksThisMonth', 'totalTasks', 'totalGoals', 'totalProjects',
+            'longestStreak', 'currentStreak', 'milestonesUnlocked', 'milestonesTotal'
         ));
     }
 }

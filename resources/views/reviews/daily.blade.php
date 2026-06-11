@@ -6,19 +6,9 @@
         {{-- Auto summary --}}
         <x-ui.card class="mb-6">
             <h3 class="text-sm font-semibold text-gray-900 mb-3">Today's Summary</h3>
-            <div class="grid grid-cols-3 gap-4">
-                <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <p class="text-2xl font-bold text-gray-900">{{ $autoData['tasks_completed'] }}</p>
-                    <p class="text-xs text-gray-500">Tasks Done</p>
-                </div>
-                <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <p class="text-2xl font-bold text-indigo-600">{{ $autoData['xp_earned'] }}</p>
-                    <p class="text-xs text-gray-500">XP Earned</p>
-                </div>
-                <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <p class="text-2xl font-bold text-gray-900">{{ count($autoData['stat_gains']) }}</p>
-                    <p class="text-xs text-gray-500">Stats Improved</p>
-                </div>
+            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                <p class="text-3xl font-bold text-gray-900 tabular-nums">{{ $autoData['tasks_completed'] }}</p>
+                <p class="text-xs text-gray-500 mt-1">{{ \Illuminate\Support\Str::plural('Task', $autoData['tasks_completed']) }} completed today</p>
             </div>
         </x-ui.card>
 
@@ -88,7 +78,7 @@
 
                     <div class="flex justify-end mt-6 pt-4 border-t border-gray-100">
                         <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
-                            Complete Review (+10 XP)
+                            Complete Review
                         </button>
                     </div>
                 </form>

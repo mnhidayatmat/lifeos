@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resource;
-use App\Models\Task;
-use App\Services\XpService;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -38,9 +36,8 @@ class ResourceController extends Controller
 
         $resource = $request->user()->resources()->create($validated);
 
-        // Award XP if created as completed
         if ($validated['status'] === 'completed') {
-            $this->awardResourceXp($resource, $request->user());
+            $resource->update(['completed_at' => now()]);
         }
 
         return back()->with('success', 'Resource added.');
@@ -63,12 +60,12 @@ class ResourceController extends Controller
             'rating' => 'nullable|integer|min:1|max:5',
         ]);
 
-        $resource->update($validated);
-
-        // Award XP on status change to completed
+        // Stamp completion time when moving into completed
         if ($oldStatus !== 'completed' && $validated['status'] === 'completed') {
-            $this->awardResourceXp($resource, $request->user());
+            $validated['completed_at'] = now();
         }
+
+        $resource->update($validated);
 
         return back()->with('success', 'Resource updated.');
     }
@@ -79,24 +76,5 @@ class ResourceController extends Controller
         $resource->delete();
 
         return back()->with('success', 'Resource removed.');
-    }
-
-    private function awardResourceXp(Resource $resource, $user): void
-    {
-        $xp = 15; // Medium XP for completing a resource
-        $resource->update(['xp_awarded' => $xp, 'completed_at' => now()]);
-
-        $lifeArea = $resource->lifeArea;
-        if ($lifeArea) {
-            $primaryXp = (int) floor($xp * 0.7);
-            $secondaryXp = $xp - $primaryXp;
-            $user->stats()->where('stat', $lifeArea->primary_stat)->increment('total_xp', $primaryXp);
-            $user->stats()->where('stat', $lifeArea->secondary_stat)->increment('total_xp', $secondaryXp);
-        } else {
-            $user->stats()->where('stat', 'knowledge')->increment('total_xp', $xp);
-        }
-
-        $user->increment('total_xp', $xp);
-        $user->xpLogs()->create(['source_type' => 'resource', 'source_id' => $resource->id, 'xp_amount' => $xp, 'stat' => $lifeArea?->primary_stat ?? 'knowledge', 'description' => "Completed: {$resource->title}", 'created_at' => now()]);
     }
 }

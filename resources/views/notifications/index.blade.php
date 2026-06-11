@@ -17,7 +17,7 @@
                 <x-ui.empty-state
                     icon="check-square"
                     title="No notifications"
-                    description="You're all caught up. Notifications appear here when you level up or unlock achievements."
+                    description="You're all caught up. Notifications appear here when you reach a new milestone."
                 />
             </x-ui.card>
         @else
@@ -26,8 +26,8 @@
                     <x-ui.card class="{{ $notification->read_at ? 'opacity-60' : '' }}">
                         <div class="flex items-start gap-3">
                             @php $type = $notification->data['type'] ?? 'info'; @endphp
-                            <div class="w-8 h-8 rounded-lg {{ $type === 'level_up' ? 'bg-indigo-100' : ($type === 'achievement' ? 'bg-amber-100' : 'bg-gray-100') }} flex items-center justify-center shrink-0">
-                                <x-icon :name="$type === 'achievement' ? 'trophy' : 'user'" class="w-4 h-4 {{ $type === 'level_up' ? 'text-indigo-600' : ($type === 'achievement' ? 'text-amber-600' : 'text-gray-500') }}" />
+                            <div class="w-8 h-8 rounded-lg {{ $type === 'milestone' ? 'bg-amber-100' : 'bg-gray-100' }} flex items-center justify-center shrink-0">
+                                <x-icon :name="$type === 'milestone' ? 'trophy' : 'user'" class="w-4 h-4 {{ $type === 'milestone' ? 'text-amber-600' : 'text-gray-500' }}" />
                             </div>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900">{{ $notification->data['title'] ?? 'Notification' }}</p>

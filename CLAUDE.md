@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-LifeOS is a personal productivity platform combining goal management (Life Areas → Goals → Projects → Tasks) with an RPG-inspired progression system (XP, 8 stats, 6 ranks, achievements, streaks). Design philosophy: "Claude outside, Solo Leveling inside" — clean/premium/minimal UI with a motivating progression system underneath.
+LifeOS is a personal productivity platform built around a clear goal-management hierarchy (Life Areas → Goals → Projects → Tasks) plus reviews, habits, vision, and analytics. Design philosophy: clean / premium / minimal, benchmarked against tools like Linear, Todoist, and Things — progress is shown through real metrics (completion trends, life-area balance, consistency streaks, milestones), not points or levels.
+
+> Note: an earlier version had an RPG/XP layer (experience points, levels, ranks, 8 character stats). That layer was fully removed in favor of professional progress tracking. "Consistency" streaks and "Milestones" (formerly achievements, no point rewards) are kept.
 
 ## Commands
 
@@ -30,7 +32,7 @@ composer setup
 # Run migrations
 php artisan migrate
 
-# Seed achievements
+# Seed milestones (table is still named `achievements`)
 php artisan db:seed --class=AchievementSeeder
 ```
 
@@ -40,30 +42,31 @@ php artisan db:seed --class=AchievementSeeder
 Laravel 13 + Blade + Tailwind CSS 3 + Alpine.js. No SPA — all server-rendered with Alpine for interactivity (modals, dropdowns, inline edits). Vite for bundling. MySQL 8 in development (tests use in-memory SQLite).
 
 ### Domain Model Hierarchy
-**Life Areas** → **Goals** → **Projects** → **Tasks** (→ Subtasks). Tasks can also be standalone (no goal/project required). Each Life Area maps to a primary + secondary stat.
+**Life Areas** → **Goals** → **Projects** → **Tasks** (→ Subtasks). Tasks can also be standalone (no goal/project required).
 
-### Progression System (Event-Driven)
-The core progression loop is event-driven, registered in `AppServiceProvider::boot()`:
+### Event-Driven Progress Tracking
+A light event loop is registered in `AppServiceProvider::boot()`:
 
 1. User completes a task → `TaskCompleted` event fires
-2. Listeners: `AwardTaskXp` (5/15/30 XP by effort, 1.2x if goal-linked, 70/30 primary/secondary stat split), `UpdateStreak`, `CheckAchievements`
-3. If XP crosses level threshold → `LevelUp` event → `CreateLevelUpNotification`
-4. If achievement condition met → `AchievementUnlocked` event → `CreateAchievementNotification`
-5. Reviews and streak milestones have their own parallel event chains
+2. Listeners: `UpdateStreak` (consistency streak, consecutive days with 1-day grace) and `CheckAchievements` (milestone unlocks)
+3. If a milestone condition is met → `AchievementUnlocked` event → `CreateAchievementNotification`
+4. Reviews fire `ReviewCompleted` → `CheckAchievements`
 
-**Key services:** `XpService` (XP math, level formula: `floor(sqrt(totalXp / 25)) + 1`), `StreakService` (consecutive days with 1-day grace), `AchievementService` (8 conditions), `RankService` (level → rank mapping), `ProgressService` (goal progress calculation).
+There is **no** XP / level / rank math. `AwardTaskXp`, `XpService`, `RankService`, `LevelUp`, `StreakMilestoneReached`, and the level-up notification were removed.
+
+**Key services:** `StreakService` (consecutive days with 1-day grace), `AchievementService` (milestone conditions, no rewards), `ProgressService` (goal progress calculation), `ReviewService` (auto-summaries from real task/goal counts). Analytics is computed in `AnalyticsController` from task completions, goal/project counts, life-area balance, and streaks.
 
 ### Authorization Pattern
 Manual `abort_unless($model->user_id === auth()->id(), 403)` in a private `authorize()` method on each controller. No policies.
 
 ### Onboarding Flow
-4-step flow: archetype selection → life areas → first goal → welcome. Gated by `EnsureOnboardingComplete` middleware on all main routes. Archetypes (Student/Researcher/Founder/Professional/Creator) pre-seed life areas with stat mappings via `OnboardingService`.
+4-step flow: template selection → life areas → first goal → welcome. Gated by `EnsureOnboardingComplete` middleware on all main routes. Onboarding templates (Student/Researcher/Founder/Professional/Creator) pre-seed life areas via `OnboardingService` (stored on `users.archetype`). No stat mappings.
 
 ### UI Components
-Blade components in `resources/views/components/ui/`: `card`, `badge`, `modal` (Alpine-driven, opened via `$dispatch('open-modal-{name}')`), `empty-state`, `progress-bar`, `stat-bar`, `rank-badge`, `level-up-modal`, `effort-badge`, `toast`. Icon component at `components/icon.blade.php`.
+Blade components in `resources/views/components/ui/`: `card`, `badge`, `modal` (Alpine-driven, opened via `$dispatch('open-modal-{name}')`), `empty-state`, `progress-bar`, `effort-badge`, `toast`. Icon component at `components/icon.blade.php`. (The RPG `stat-bar`, `rank-badge`, and `level-up-modal` components were removed.)
 
 ### Tailwind Design Tokens
-Custom colors in `tailwind.config.js`: `stat.*` (8 stat colors) and `rank.*` (6 rank colors). Primary brand color: indigo-600. Font: Inter.
+`tailwind.config.js` only sets the Inter font family now; the old `stat.*` / `rank.*` custom color palettes were removed. Primary brand color: indigo-600.
 
 ### Layouts
 - `layouts/app.blade.php` — authenticated shell with sidebar + topbar, wrapped in `x-data="{ sidebarOpen: false }"`
@@ -72,7 +75,7 @@ Custom colors in `tailwind.config.js`: `stat.*` (8 stat colors) and `rank.*` (6 
 - `layouts/topbar.blade.php` — sticky topbar with notifications + user menu
 
 ### Database
-17 migrations. Key models beyond the hierarchy: `UserStat` (8 per user), `XpLog` (audit trail), `Streak`, `Achievement`/`UserAchievement`, `Review` (daily/weekly with JSON responses), `Habit`/`HabitLog`, `Vision`, `IdentityTrait`, `Resource`.
+Key models beyond the hierarchy: `Streak` (consistency), `Achievement`/`UserAchievement` (milestones — table names kept), `Review` (daily/weekly/monthly with JSON responses), `Habit`/`HabitLog`, `Vision`, `IdentityTrait`, `Resource`. The `user_stats` and `xp_logs` tables and the `total_xp`/`level`/`rank`/`title` (users), `primary_stat`/`secondary_stat` (life_areas), `xp_awarded` (tasks/reviews/resources/habit_logs), `linked_stat` (identity_traits), and `xp_reward` (achievements) columns were dropped in `2026_06_11_000000_remove_gamification_fields`.
 
 ### Project Documentation
 Detailed MVP workflow at `claudedocs/workflow_mvp.md` covering all 7 implementation phases.

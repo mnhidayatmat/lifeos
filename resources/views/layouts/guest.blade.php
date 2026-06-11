@@ -35,30 +35,28 @@
 
                     {{-- Center Content --}}
                     <div class="max-w-md">
-                        <blockquote class="text-2xl font-bold text-white leading-snug">
-                            Organize your life.<br>Level up for real.
+                        <blockquote class="text-3xl font-bold text-white leading-tight tracking-tight">
+                            Everything you're working toward, in one place.
                         </blockquote>
                         <p class="mt-4 text-indigo-200 leading-relaxed">
-                            Connect your goals, projects, and daily tasks into one system — then watch your progress come alive with XP, stats, and achievements.
+                            Connect your life areas, goals, projects, and daily tasks into one clear system — and see real progress without the noise.
                         </p>
 
-                        {{-- Mini Stats Preview --}}
-                        <div class="mt-8 space-y-3">
+                        {{-- Feature highlights --}}
+                        <div class="mt-8 space-y-4">
                             @php
-                                $previewStats = [
-                                    ['name' => 'Focus', 'value' => 72, 'color' => 'bg-indigo-300'],
-                                    ['name' => 'Discipline', 'value' => 85, 'color' => 'bg-amber-400'],
-                                    ['name' => 'Knowledge', 'value' => 64, 'color' => 'bg-blue-400'],
+                                $highlights = [
+                                    ['title' => 'Goals → Projects → Tasks', 'desc' => 'A single hierarchy that keeps daily work tied to what matters.'],
+                                    ['title' => 'Weekly & monthly reviews', 'desc' => 'Reflect, course-correct, and plan what comes next.'],
+                                    ['title' => 'Clear analytics', 'desc' => 'Completion trends and life-area balance at a glance.'],
                                 ];
                             @endphp
-                            @foreach ($previewStats as $stat)
-                                <div>
-                                    <div class="flex items-center justify-between mb-1">
-                                        <span class="text-xs font-medium text-indigo-200">{{ $stat['name'] }}</span>
-                                        <span class="text-xs text-indigo-300">{{ $stat['value'] }}</span>
-                                    </div>
-                                    <div class="w-full bg-white/10 rounded-full h-1.5">
-                                        <div class="{{ $stat['color'] }} h-1.5 rounded-full" style="width: {{ $stat['value'] }}%"></div>
+                            @foreach ($highlights as $item)
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-indigo-200 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">{{ $item['title'] }}</p>
+                                        <p class="text-xs text-indigo-300 leading-relaxed">{{ $item['desc'] }}</p>
                                     </div>
                                 </div>
                             @endforeach

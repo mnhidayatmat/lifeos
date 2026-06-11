@@ -17,11 +17,10 @@ class AchievementNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'type' => 'achievement',
-            'title' => 'Achievement Unlocked!',
+            'type' => 'milestone',
+            'title' => 'Milestone reached',
             'message' => $this->achievement->name . ' — ' . $this->achievement->description,
             'achievement_key' => $this->achievement->key,
-            'xp_reward' => $this->achievement->xp_reward,
         ];
     }
 }

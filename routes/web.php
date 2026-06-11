@@ -5,10 +5,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\HabitController;
 use App\Http\Controllers\LifeAreaController;
+use App\Http\Controllers\MilestonesController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OnboardingController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProgressionController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ReviewController;
@@ -118,9 +118,8 @@ Route::middleware(['auth', 'verified', EnsureOnboardingComplete::class])->group(
     // Analytics
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
 
-    // Progression
-    Route::get('/progression', [ProgressionController::class, 'index'])->name('progression.index');
-    Route::get('/progression/achievements', [ProgressionController::class, 'achievements'])->name('progression.achievements');
+    // Milestones
+    Route::get('/milestones', [MilestonesController::class, 'index'])->name('milestones.index');
 
     // Notifications
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');

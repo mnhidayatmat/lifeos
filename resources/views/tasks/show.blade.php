@@ -27,7 +27,6 @@
                 </div>
                 <div class="flex items-center gap-2">
                     <x-ui.effort-badge :effort="$task->effort" />
-                    <span class="text-xs text-gray-500">{{ $task->base_xp }} XP</span>
                 </div>
             </div>
 

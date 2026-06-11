@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'LifeOS') }} — Level Up Your Life</title>
-    <meta name="description" content="A premium productivity platform that connects your Life Areas, Goals, Projects, and Tasks with an RPG-inspired progression system.">
+    <title>{{ config('app.name', 'LifeOS') }} — Organize your life, in one place</title>
+    <meta name="description" content="A clean productivity platform that connects your life areas, goals, projects, and tasks — with reviews and analytics to keep you on track.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -45,7 +45,7 @@
             box-shadow: 0 0 24px -4px rgba(99, 102, 241, 0.35);
         }
 
-        /* Rank badge shimmer */
+        /* Subtle shimmer accent */
         @keyframes shimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
@@ -76,8 +76,8 @@
                 {{-- Desktop Nav --}}
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#features" class="text-sm text-gray-500 hover:text-gray-900 transition">Features</a>
-                    <a href="#progression" class="text-sm text-gray-500 hover:text-gray-900 transition">Progression</a>
-                    <a href="#archetypes" class="text-sm text-gray-500 hover:text-gray-900 transition">Archetypes</a>
+                    <a href="#insights" class="text-sm text-gray-500 hover:text-gray-900 transition">Insights</a>
+                    <a href="#templates" class="text-sm text-gray-500 hover:text-gray-900 transition">Templates</a>
                 </div>
 
                 {{-- Auth Buttons --}}
@@ -110,8 +110,8 @@
         <div x-show="mobileMenu" x-cloak x-transition class="md:hidden border-t border-gray-100 bg-white">
             <div class="px-4 py-4 space-y-3">
                 <a href="#features" class="block text-sm text-gray-600 hover:text-gray-900">Features</a>
-                <a href="#progression" class="block text-sm text-gray-600 hover:text-gray-900">Progression</a>
-                <a href="#archetypes" class="block text-sm text-gray-600 hover:text-gray-900">Archetypes</a>
+                <a href="#insights" class="block text-sm text-gray-600 hover:text-gray-900">Insights</a>
+                <a href="#templates" class="block text-sm text-gray-600 hover:text-gray-900">Templates</a>
                 <div class="pt-3 border-t border-gray-100 flex gap-3">
                     @auth
                         <a href="{{ route('dashboard') }}" class="flex-1 text-center px-4 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg">Dashboard</a>
@@ -139,12 +139,12 @@
                 {{-- Headline --}}
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1]">
                     Organize your life.
-                    <span class="block mt-2 bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Level up for real.</span>
+                    <span class="block mt-2 bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">See real progress.</span>
                 </h1>
 
                 {{-- Subheadline --}}
                 <p class="mt-6 text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-                    LifeOS connects your goals, projects, and daily tasks into one system — then rewards your progress with XP, stats, ranks, and achievements.
+                    LifeOS connects your life areas, goals, projects, and daily tasks into one clear system — with reviews and analytics that show real progress.
                 </p>
 
                 {{-- CTA --}}
@@ -156,7 +156,7 @@
                         </a>
                     @else
                         <a href="{{ route('register') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-lg glow-indigo">
-                            Start Your Journey
+                            Get started free
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                         </a>
                         <a href="{{ route('login') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition">
@@ -187,17 +187,16 @@
                     {{-- Mock Dashboard Content --}}
                     <div class="p-6 sm:p-8 bg-gray-50">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {{-- XP Card --}}
+                            {{-- This Week Card --}}
                             <div class="bg-white rounded-xl border border-gray-200 p-4 animate-float">
                                 <div class="flex items-center justify-between mb-3">
-                                    <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">Level</span>
-                                    <span class="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">Expert</span>
+                                    <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">This Week</span>
                                 </div>
-                                <p class="text-2xl font-bold text-gray-900">24</p>
+                                <p class="text-2xl font-bold text-gray-900">28</p>
                                 <div class="mt-2 w-full bg-gray-100 rounded-full h-1.5">
-                                    <div class="bg-indigo-600 h-1.5 rounded-full animate-stat-fill" style="width: 68%"></div>
+                                    <div class="bg-indigo-600 h-1.5 rounded-full animate-stat-fill" style="width: 75%"></div>
                                 </div>
-                                <p class="mt-1 text-xs text-gray-400">1,340 / 2,000 XP</p>
+                                <p class="mt-1 text-xs text-gray-400">tasks completed</p>
                             </div>
 
                             {{-- Tasks Card --}}
@@ -334,115 +333,90 @@
     </section>
 
     {{-- ============================================= --}}
-    {{-- PROGRESSION SECTION --}}
+    {{-- INSIGHTS SECTION --}}
     {{-- ============================================= --}}
-    <section id="progression" class="py-20 lg:py-28 bg-gray-50">
+    <section id="insights" class="py-20 lg:py-28 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 {{-- Left: Content --}}
                 <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 border border-violet-100 mb-6">
-                        <span class="text-xs font-medium text-violet-700">RPG-Inspired</span>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 mb-6">
+                        <span class="text-xs font-medium text-indigo-700">Insights</span>
                     </div>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Every task completed<br>makes you stronger</h2>
-                    <p class="mt-5 text-lg text-gray-500 leading-relaxed">Complete tasks to earn XP, raise your stats, climb the ranks, and unlock achievements. Your real-life effort translates into visible growth.</p>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Know exactly where<br>your time goes</h2>
+                    <p class="mt-5 text-lg text-gray-500 leading-relaxed">Every completed task rolls up into clear analytics — completion trends, life-area balance, and consistency — so you can see what's working and adjust.</p>
 
                     <div class="mt-8 space-y-5">
-                        {{-- XP System --}}
+                        {{-- Completion trends --}}
                         <div class="flex gap-4">
                             <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg>
                             </div>
                             <div>
-                                <h3 class="text-sm font-semibold text-gray-900">Experience Points</h3>
-                                <p class="text-sm text-gray-500 mt-0.5">Earn 5-30 XP per task based on effort. Level up and watch your character grow.</p>
+                                <h3 class="text-sm font-semibold text-gray-900">Completion trends</h3>
+                                <p class="text-sm text-gray-500 mt-0.5">See tasks completed over time and your weekly completion rate at a glance.</p>
                             </div>
                         </div>
 
-                        {{-- Stats --}}
+                        {{-- Life-area balance --}}
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-900">Life-area balance</h3>
+                                <p class="text-sm text-gray-500 mt-0.5">Make sure no part of your life is being neglected — work, health, learning, and more.</p>
+                            </div>
+                        </div>
+
+                        {{-- Milestones --}}
                         <div class="flex gap-4">
                             <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             </div>
                             <div>
-                                <h3 class="text-sm font-semibold text-gray-900">8 Character Stats</h3>
-                                <p class="text-sm text-gray-500 mt-0.5">Discipline, Focus, Knowledge, Strength, Wealth, Creativity, Influence, Wisdom.</p>
-                            </div>
-                        </div>
-
-                        {{-- Ranks --}}
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-900">Ranks & Achievements</h3>
-                                <p class="text-sm text-gray-500 mt-0.5">Rise from Initiate to Legend. Unlock achievements for milestones and consistency.</p>
+                                <h3 class="text-sm font-semibold text-gray-900">Milestones</h3>
+                                <p class="text-sm text-gray-500 mt-0.5">Mark meaningful moments like your first completed goal or 100 tasks done.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {{-- Right: Stats Visual --}}
+                {{-- Right: Analytics Visual --}}
                 <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
-                    {{-- Profile Header --}}
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
-                            <span class="text-xl font-bold text-white">E</span>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Eddie</h3>
-                            <div class="flex items-center gap-2 mt-0.5">
-                                <span class="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">Expert</span>
-                                <span class="text-xs text-gray-400">Level 24</span>
-                            </div>
-                        </div>
+                    {{-- Header --}}
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-sm font-semibold text-gray-900">This month</h3>
+                        <span class="text-xs text-gray-400">Tasks by life area</span>
                     </div>
 
-                    {{-- Stat Bars --}}
-                    <div class="space-y-3">
+                    {{-- Life-area bars --}}
+                    <div class="space-y-4">
                         @php
-                            $demoStats = [
-                                ['name' => 'Discipline', 'value' => 78, 'color' => 'bg-amber-500'],
-                                ['name' => 'Focus', 'value' => 65, 'color' => 'bg-indigo-500'],
-                                ['name' => 'Knowledge', 'value' => 82, 'color' => 'bg-blue-500'],
-                                ['name' => 'Strength', 'value' => 45, 'color' => 'bg-red-500'],
-                                ['name' => 'Wealth', 'value' => 58, 'color' => 'bg-emerald-500'],
-                                ['name' => 'Creativity', 'value' => 71, 'color' => 'bg-pink-500'],
-                                ['name' => 'Influence', 'value' => 39, 'color' => 'bg-purple-500'],
-                                ['name' => 'Wisdom', 'value' => 60, 'color' => 'bg-teal-500'],
+                            $demoAreas = [
+                                ['name' => 'Work', 'count' => 42, 'width' => 92, 'color' => 'bg-indigo-500'],
+                                ['name' => 'Health', 'count' => 31, 'width' => 68, 'color' => 'bg-emerald-500'],
+                                ['name' => 'Learning', 'count' => 24, 'width' => 53, 'color' => 'bg-blue-500'],
+                                ['name' => 'Finance', 'count' => 12, 'width' => 26, 'color' => 'bg-amber-500'],
                             ];
                         @endphp
-                        @foreach ($demoStats as $stat)
+                        @foreach ($demoAreas as $area)
                             <div>
                                 <div class="flex items-center justify-between mb-1">
-                                    <span class="text-xs font-medium text-gray-600">{{ $stat['name'] }}</span>
-                                    <span class="text-xs text-gray-400">{{ $stat['value'] }}</span>
+                                    <span class="text-xs font-medium text-gray-600">{{ $area['name'] }}</span>
+                                    <span class="text-xs text-gray-400">{{ $area['count'] }}</span>
                                 </div>
                                 <div class="w-full bg-gray-100 rounded-full h-2">
-                                    <div class="{{ $stat['color'] }} h-2 rounded-full animate-stat-fill" style="width: {{ $stat['value'] }}%"></div>
+                                    <div class="{{ $area['color'] }} h-2 rounded-full animate-stat-fill" style="width: {{ $area['width'] }}%"></div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
 
-                    {{-- Achievement Badges --}}
-                    <div class="mt-6 pt-5 border-t border-gray-100">
-                        <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Recent Achievements</p>
-                        <div class="flex gap-2 flex-wrap">
-                            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-xs font-medium text-amber-700">
-                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1z"/></svg>
-                                First Goal Set
-                            </div>
-                            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-xs font-medium text-indigo-700">
-                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"/></svg>
-                                7-Day Streak
-                            </div>
-                            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-medium text-emerald-700">
-                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                                100 Tasks Done
-                            </div>
-                        </div>
+                    {{-- Milestones row --}}
+                    <div class="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-sm text-gray-500">Milestones reached</span>
+                        <span class="text-sm font-semibold text-indigo-600">6 / 8</span>
                     </div>
                 </div>
             </div>
@@ -450,13 +424,13 @@
     </section>
 
     {{-- ============================================= --}}
-    {{-- ARCHETYPES SECTION --}}
+    {{-- TEMPLATES SECTION --}}
     {{-- ============================================= --}}
-    <section id="archetypes" class="py-20 lg:py-28 bg-white">
+    <section id="templates" class="py-20 lg:py-28 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Choose your path</h2>
-                <p class="mt-4 text-lg text-gray-500">Start with an archetype that matches your focus. Each one pre-configures your life areas and starter goals.</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Start with a template</h2>
+                <p class="mt-4 text-lg text-gray-500">Pick a starting template that matches your focus. Each one pre-configures your life areas and a starter goal — change anything later.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -531,30 +505,30 @@
                         <div class="flex items-center gap-3 p-3 rounded-lg bg-emerald-50 border border-emerald-100">
                             <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                             <span class="text-sm text-gray-700">Complete API documentation</span>
-                            <span class="ml-auto text-xs font-medium text-emerald-600">+15 XP</span>
+                            <span class="ml-auto text-xs font-medium text-gray-400">Medium</span>
                         </div>
                         <div class="flex items-center gap-3 p-3 rounded-lg bg-emerald-50 border border-emerald-100">
                             <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                             <span class="text-sm text-gray-700">30-minute workout</span>
-                            <span class="ml-auto text-xs font-medium text-emerald-600">+30 XP</span>
+                            <span class="ml-auto text-xs font-medium text-gray-400">Large</span>
                         </div>
                         <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
                             <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex-shrink-0"></div>
                             <span class="text-sm text-gray-500">Read 20 pages</span>
-                            <span class="ml-auto text-xs text-gray-400">+5 XP</span>
+                            <span class="ml-auto text-xs text-gray-400">Small</span>
                         </div>
                     </div>
 
                     <div class="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between">
-                        <span class="text-xs text-gray-400">Today's XP earned</span>
-                        <span class="text-sm font-semibold text-indigo-600">+45 XP</span>
+                        <span class="text-xs text-gray-400">Completed today</span>
+                        <span class="text-sm font-semibold text-indigo-600">2 of 3</span>
                     </div>
                 </div>
 
                 {{-- Content --}}
                 <div class="order-1 lg:order-2">
                     <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Reflect, review,<br>and grow</h2>
-                    <p class="mt-5 text-lg text-gray-500 leading-relaxed">Daily and weekly reviews help you stay aligned with your goals. See what you accomplished, earn your XP, and plan what's next.</p>
+                    <p class="mt-5 text-lg text-gray-500 leading-relaxed">Daily and weekly reviews help you stay aligned with your goals. See what you accomplished, reflect on what mattered, and plan what's next.</p>
 
                     <div class="mt-8 space-y-4">
                         <div class="flex items-center gap-3">
@@ -580,8 +554,8 @@
     {{-- ============================================= --}}
     <section class="py-20 lg:py-28 bg-white">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Ready to level up?</h2>
-            <p class="mt-4 text-lg text-gray-500">Join LifeOS and start turning your daily actions into real character growth.</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Ready to get organized?</h2>
+            <p class="mt-4 text-lg text-gray-500">Bring your goals, projects, and tasks into one place — and finally see them through.</p>
             <div class="mt-10">
                 @auth
                     <a href="{{ route('dashboard') }}" class="inline-flex items-center px-8 py-3.5 text-base font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-lg glow-indigo">
@@ -590,7 +564,7 @@
                     </a>
                 @else
                     <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-3.5 text-base font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-lg glow-indigo">
-                        Start Your Journey — It's Free
+                        Get started — it's free
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                     </a>
                 @endauth

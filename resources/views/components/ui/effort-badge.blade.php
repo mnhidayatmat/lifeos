@@ -11,15 +11,15 @@ $labels = [
     'medium' => 'M',
     'large'  => 'L',
 ];
-$xpValues = [
-    'small'  => '5 XP',
-    'medium' => '15 XP',
-    'large'  => '30 XP',
+$tooltips = [
+    'small'  => 'Small effort',
+    'medium' => 'Medium effort',
+    'large'  => 'Large effort',
 ];
 $style = $styles[$effort] ?? $styles['medium'];
 $label = $labels[$effort] ?? 'M';
 @endphp
 
-<span {{ $attributes->merge(['class' => "inline-flex items-center justify-center w-6 h-6 rounded text-[10px] font-bold {$style}", 'title' => $xpValues[$effort] ?? '']) }}>
+<span {{ $attributes->merge(['class' => "inline-flex items-center justify-center w-6 h-6 rounded text-[10px] font-bold {$style}", 'title' => $tooltips[$effort] ?? '']) }}>
     {{ $label }}
 </span>

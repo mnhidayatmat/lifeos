@@ -58,13 +58,7 @@ class SocialiteController extends Controller
             'auth_type' => 'google',
             'email_verified_at' => now(),
             'password' => Hash::make(str()->random(32)), // Random password for Google users
-            'total_xp' => 0,
-            'level' => 1,
-            'rank' => 'initiate',
         ]);
-
-        // Initialize user stats
-        $newUser->initializeStats();
 
         Auth::login($newUser, true);
 

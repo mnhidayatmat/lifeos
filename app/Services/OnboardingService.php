@@ -22,7 +22,7 @@ class OnboardingService
 
         foreach ($areaNames as $index => $name) {
             $preset = $presets[$name] ?? null;
-            if (!$preset) {
+            if (! $preset) {
                 continue;
             }
 
@@ -34,8 +34,6 @@ class OnboardingService
                 'is_preset' => true,
                 'is_active' => true,
                 'sort_order' => $index,
-                'primary_stat' => $preset['primary_stat'],
-                'secondary_stat' => $preset['secondary_stat'],
             ]);
         }
     }
@@ -43,6 +41,5 @@ class OnboardingService
     public function completeOnboarding(User $user): void
     {
         $user->update(['onboarding_completed_at' => now()]);
-        $user->initializeStats();
     }
 }

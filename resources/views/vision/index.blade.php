@@ -133,9 +133,6 @@
                         <div class="flex items-center justify-between gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800">
                             <div class="flex items-center gap-2 flex-wrap min-w-0">
                                 <span class="font-medium text-sm text-gray-900 dark:text-gray-100">{{ $identityTrait->trait }}</span>
-                                @if($identityTrait->linked_stat)
-                                    <x-ui.badge color="purple">{{ ucfirst($identityTrait->linked_stat) }}</x-ui.badge>
-                                @endif
                                 @php
                                     $statusColor = match($identityTrait->status) {
                                         'aspirational' => 'amber',
@@ -195,17 +192,6 @@
                         <input type="text" name="trait" id="trait" required
                                class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm"
                                placeholder="e.g. Disciplined, Creative, Resilient">
-                    </div>
-
-                    <div>
-                        <label for="linked_stat" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Linked Stat</label>
-                        <select name="linked_stat" id="linked_stat"
-                                class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm">
-                            <option value="">None</option>
-                            @foreach(\App\Models\User::STATS as $stat)
-                                <option value="{{ $stat }}">{{ ucfirst($stat) }}</option>
-                            @endforeach
-                        </select>
                     </div>
 
                     <div>

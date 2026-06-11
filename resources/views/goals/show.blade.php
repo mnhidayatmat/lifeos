@@ -138,20 +138,6 @@
             {{-- Sidebar --}}
             <div class="space-y-6">
                 <x-ui.card>
-                    <h3 class="text-sm font-semibold text-gray-900 mb-3">Stats Contribution</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between text-xs">
-                            <span class="text-gray-500">Primary</span>
-                            <span class="font-medium text-gray-900">{{ ucfirst($goal->lifeArea->primary_stat) }} (70%)</span>
-                        </div>
-                        <div class="flex items-center justify-between text-xs">
-                            <span class="text-gray-500">Secondary</span>
-                            <span class="font-medium text-gray-900">{{ ucfirst($goal->lifeArea->secondary_stat) }} (30%)</span>
-                        </div>
-                    </div>
-                </x-ui.card>
-
-                <x-ui.card>
                     <h3 class="text-sm font-semibold text-gray-900 mb-3">Summary</h3>
                     <div class="space-y-2 text-xs text-gray-500">
                         <div class="flex justify-between">

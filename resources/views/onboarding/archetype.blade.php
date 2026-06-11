@@ -1,10 +1,10 @@
 <x-onboarding-layout>
-    <x-slot name="title">Choose Your Path</x-slot>
+    <x-slot name="title">Get started</x-slot>
 
     <x-ui.card>
         <div class="text-center mb-6">
-            <h2 class="text-xl font-semibold text-gray-900">Who are you?</h2>
-            <p class="text-sm text-gray-500 mt-1">Choose the archetype that best describes you. This sets up your starting life areas.</p>
+            <h2 class="text-xl font-semibold text-gray-900">What best describes you?</h2>
+            <p class="text-sm text-gray-500 mt-1">Pick a starting template. It sets up your life areas — you can change everything later.</p>
         </div>
 
         <form method="POST" action="{{ route('onboarding.store-archetype') }}">

@@ -86,7 +86,7 @@
                                 @endif
                             </div>
 
-                            {{-- Right: rating and XP --}}
+                            {{-- Right: rating --}}
                             @if($resource->status === 'completed')
                                 <div class="flex flex-col items-end gap-1 shrink-0">
                                     @if($resource->rating)
@@ -97,9 +97,6 @@
                                                 </svg>
                                             @endfor
                                         </div>
-                                    @endif
-                                    @if($resource->xp_awarded)
-                                        <span class="text-xs font-medium text-indigo-600 dark:text-indigo-400">+{{ $resource->xp_awarded }} XP</span>
                                     @endif
                                 </div>
                             @endif

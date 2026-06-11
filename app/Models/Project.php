@@ -44,6 +44,7 @@ class Project extends Model
         if ($this->impact_score === null && $this->confidence_score === null && $this->ease_score === null) {
             return null;
         }
+
         return round((($this->impact_score ?? 0) + ($this->confidence_score ?? 0) + ($this->ease_score ?? 0)) / 3, 1);
     }
 
@@ -54,6 +55,7 @@ class Project extends Model
             return 0;
         }
         $completed = $this->tasks()->where('status', 'completed')->count();
+
         return (int) round(($completed / $total) * 100);
     }
 }

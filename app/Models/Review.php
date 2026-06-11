@@ -9,14 +9,13 @@ class Review extends Model
 {
     protected $fillable = [
         'type', 'period_date', 'responses', 'auto_summary',
-        'notes', 'xp_awarded', 'completed_at',
+        'notes', 'completed_at',
     ];
 
     protected $casts = [
         'period_date' => 'date',
         'responses' => 'array',
         'auto_summary' => 'array',
-        'xp_awarded' => 'integer',
         'completed_at' => 'datetime',
     ];
 

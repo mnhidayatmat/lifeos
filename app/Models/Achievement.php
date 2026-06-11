@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Achievement extends Model
 {
-    protected $fillable = ['key', 'name', 'description', 'icon', 'xp_reward'];
-
-    protected $casts = [
-        'xp_reward' => 'integer',
-    ];
+    protected $fillable = ['key', 'name', 'description', 'icon'];
 
     public function userAchievements(): HasMany
     {

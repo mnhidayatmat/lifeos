@@ -11,7 +11,7 @@ class Task extends Model
     protected $fillable = [
         'project_id', 'goal_id', 'title', 'description',
         'effort', 'priority', 'is_important', 'status', 'due_date', 'completed_at',
-        'is_recurring', 'recurrence_rule', 'parent_task_id', 'xp_awarded',
+        'is_recurring', 'recurrence_rule', 'parent_task_id',
     ];
 
     protected $casts = [
@@ -19,13 +19,6 @@ class Task extends Model
         'completed_at' => 'datetime',
         'is_recurring' => 'boolean',
         'is_important' => 'boolean',
-        'xp_awarded' => 'integer',
-    ];
-
-    public const EFFORT_XP = [
-        'small' => 5,
-        'medium' => 15,
-        'large' => 30,
     ];
 
     public function user(): BelongsTo
@@ -58,11 +51,6 @@ class Task extends Model
         return $this->hasMany(Subtask::class)->orderBy('sort_order');
     }
 
-    public function getBaseXpAttribute(): int
-    {
-        return self::EFFORT_XP[$this->effort] ?? 15;
-    }
-
     public function isCompleted(): bool
     {
         return $this->status === 'completed';
@@ -70,7 +58,7 @@ class Task extends Model
 
     public function isOverdue(): bool
     {
-        return $this->due_date && $this->due_date->isPast() && !$this->isCompleted();
+        return $this->due_date && $this->due_date->isPast() && ! $this->isCompleted();
     }
 
     public function isUrgent(): bool
@@ -82,8 +70,8 @@ class Task extends Model
     {
         return match (true) {
             $this->isUrgent() && $this->is_important => 'do_first',
-            !$this->isUrgent() && $this->is_important => 'schedule',
-            $this->isUrgent() && !$this->is_important => 'delegate',
+            ! $this->isUrgent() && $this->is_important => 'schedule',
+            $this->isUrgent() && ! $this->is_important => 'delegate',
             default => 'eliminate',
         };
     }
@@ -96,6 +84,7 @@ class Task extends Model
         if ($this->goal?->lifeArea) {
             return $this->goal->lifeArea;
         }
+
         return null;
     }
 }

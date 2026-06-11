@@ -47,7 +47,7 @@ class ReviewController extends Controller
 
         event(new ReviewCompleted($review));
 
-        return redirect()->route('reviews.daily')->with('success', "Daily review completed! +{$review->xp_awarded} XP");
+        return redirect()->route('reviews.daily')->with('success', 'Daily review completed.');
     }
 
     public function weekly(Request $request)
@@ -85,7 +85,7 @@ class ReviewController extends Controller
 
         event(new ReviewCompleted($review));
 
-        return redirect()->route('reviews.weekly')->with('success', "Weekly review completed! +{$review->xp_awarded} XP");
+        return redirect()->route('reviews.weekly')->with('success', 'Weekly review completed.');
     }
 
     public function monthly(Request $request)
@@ -123,7 +123,7 @@ class ReviewController extends Controller
 
         event(new ReviewCompleted($review));
 
-        return redirect()->route('reviews.monthly')->with('success', "Monthly review completed! +{$review->xp_awarded} XP");
+        return redirect()->route('reviews.monthly')->with('success', 'Monthly review completed.');
     }
 
     public function history(Request $request)

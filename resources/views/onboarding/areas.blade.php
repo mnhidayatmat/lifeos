@@ -12,11 +12,6 @@
                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                     <div class="w-3 h-3 rounded-full" style="background-color: {{ $area->color }}"></div>
                     <span class="text-sm font-medium text-gray-900 flex-1">{{ $area->name }}</span>
-                    <div class="flex items-center gap-2 text-xs text-gray-500">
-                        <span>{{ ucfirst($area->primary_stat) }}</span>
-                        <span class="text-gray-300">+</span>
-                        <span>{{ ucfirst($area->secondary_stat) }}</span>
-                    </div>
                 </div>
             @endforeach
         </div>

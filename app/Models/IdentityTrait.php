@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class IdentityTrait extends Model
 {
-    protected $fillable = ['trait', 'linked_stat', 'status', 'sort_order'];
+    protected $fillable = ['trait', 'status', 'sort_order'];
 
     public function user(): BelongsTo
     {
