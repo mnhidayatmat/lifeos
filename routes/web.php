@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\HabitController;
+use App\Http\Controllers\ImportantDateController;
 use App\Http\Controllers\LifeAreaController;
 use App\Http\Controllers\MilestonesController;
 use App\Http\Controllers\NotificationController;
@@ -21,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Public iCalendar feed — authenticated by the secret token, no session.
+Route::get('/calendar/{token}.ics', [CalendarController::class, 'feed'])->name('calendar.feed');
 
 // Onboarding (auth required, no onboarding check)
 Route::middleware('auth')->group(function () {
@@ -117,6 +122,13 @@ Route::middleware(['auth', 'verified', EnsureOnboardingComplete::class])->group(
 
     // Analytics
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
+
+    // Important Dates
+    Route::get('/important-dates', [ImportantDateController::class, 'index'])->name('important-dates.index');
+    Route::post('/important-dates', [ImportantDateController::class, 'store'])->name('important-dates.store');
+    Route::put('/important-dates/{importantDate}', [ImportantDateController::class, 'update'])->name('important-dates.update');
+    Route::delete('/important-dates/{importantDate}', [ImportantDateController::class, 'destroy'])->name('important-dates.destroy');
+    Route::patch('/important-dates/{importantDate}/toggle', [ImportantDateController::class, 'toggle'])->name('important-dates.toggle');
 
     // Milestones
     Route::get('/milestones', [MilestonesController::class, 'index'])->name('milestones.index');

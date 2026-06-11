@@ -35,6 +35,10 @@
                 Tasks
             </x-sidebar-link>
 
+            <x-sidebar-link :href="route('important-dates.index')" :active="request()->routeIs('important-dates.*')" icon="calendar">
+                Important Dates
+            </x-sidebar-link>
+
             <x-sidebar-link :href="route('habits.index')" :active="request()->routeIs('habits.*')" icon="target">
                 Habits
             </x-sidebar-link>
