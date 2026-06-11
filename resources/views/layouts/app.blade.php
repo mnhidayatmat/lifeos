@@ -31,7 +31,14 @@
             {{-- Main Content --}}
             <div class="flex-1 flex flex-col min-w-0 lg:ml-64">
                 {{-- Topbar --}}
-                @include('layouts.topbar')
+                @isset($hideMobileTopbar)
+                    {{-- Page provides its own mobile header (e.g. the home hero); keep the topbar on desktop only --}}
+                    <div class="hidden lg:block">
+                        @include('layouts.topbar')
+                    </div>
+                @else
+                    @include('layouts.topbar')
+                @endisset
 
                 {{-- Page Content --}}
                 {{-- pb-24 on mobile clears the fixed bottom tab bar; reset on lg --}}

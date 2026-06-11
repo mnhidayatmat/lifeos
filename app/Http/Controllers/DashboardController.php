@@ -57,6 +57,10 @@ class DashboardController extends Controller
         // WIP warning
         $activeProjectCount = $user->projects()->where('status', 'in_progress')->count();
 
+        // Task pipeline (mobile home status grid)
+        $taskTodoCount = $user->tasks()->where('status', 'pending')->count();
+        $taskInProgressCount = $user->tasks()->where('status', 'in_progress')->count();
+
         // This week summary (real productivity metrics)
         $weekStart = now()->startOfWeek();
         $tasksThisWeek = $user->tasks()->where('status', 'completed')
@@ -89,7 +93,8 @@ class DashboardController extends Controller
         return view('dashboard', compact(
             'todayTasks', 'overdueTasks', 'activeGoals',
             'projects', 'goals', 'dominoGoal', 'todayHabits', 'activeProjectCount',
-            'tasksThisWeek', 'tasksToday', 'currentStreak', 'activeGoalCount', 'lifeAreaProgress'
+            'tasksThisWeek', 'tasksToday', 'currentStreak', 'activeGoalCount', 'lifeAreaProgress',
+            'taskTodoCount', 'taskInProgressCount'
         ));
     }
 }
