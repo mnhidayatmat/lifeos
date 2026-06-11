@@ -13,7 +13,7 @@
                   class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('description', $project?->description) }}</textarea>
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
             <label for="project_life_area_id" class="block text-sm font-medium text-gray-700 mb-1">Life Area</label>
             <select name="life_area_id" id="project_life_area_id"
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
             <label for="project_priority" class="block text-sm font-medium text-gray-700 mb-1">Priority</label>
             <select name="priority" id="project_priority"

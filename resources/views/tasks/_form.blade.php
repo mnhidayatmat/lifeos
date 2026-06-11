@@ -13,7 +13,7 @@
                   class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('description', $task?->description) }}</textarea>
     </div>
 
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Effort</label>
             <div class="flex gap-2">
@@ -61,7 +61,7 @@
         </label>
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
             <label for="task_project_id" class="block text-sm font-medium text-gray-700 mb-1">Project <span class="text-gray-400">(optional)</span></label>
             <select name="project_id" id="task_project_id"

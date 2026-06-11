@@ -31,7 +31,7 @@
         @error('life_area_id') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {{-- Progress Type --}}
         <div>
             <label for="progress_type" class="block text-sm font-medium text-gray-700 mb-1">Progress Tracking</label>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {{-- Priority --}}
         <div>
             <label for="priority" class="block text-sm font-medium text-gray-700 mb-1">Priority</label>

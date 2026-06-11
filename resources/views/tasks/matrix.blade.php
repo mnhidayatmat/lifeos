@@ -4,11 +4,11 @@
 
     <div>
         {{-- Header (same tabs as task index) --}}
-        <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center gap-1">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
+            <div class="flex items-center gap-1 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 no-scrollbar">
                 @foreach(['today' => 'Today', 'overdue' => 'Overdue', 'all' => 'All', 'matrix' => 'Matrix'] as $key => $label)
                     <a href="{{ route('tasks.index', ['view' => $key]) }}"
-                       class="px-3 py-1.5 text-sm rounded-lg {{ $view === $key ? 'bg-indigo-50 text-indigo-700 font-medium dark:bg-indigo-950 dark:text-indigo-400' : 'text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800' }}">
+                       class="shrink-0 whitespace-nowrap px-3 py-1.5 text-sm rounded-lg {{ $view === $key ? 'bg-indigo-50 text-indigo-700 font-medium dark:bg-indigo-950 dark:text-indigo-400' : 'text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800' }}">
                         {{ $label }}
                         @if($key === 'overdue')
                             @php $overdueCount = auth()->user()->tasks()->where('due_date', '<', today())->whereNotIn('status', ['completed','cancelled'])->count(); @endphp
@@ -20,7 +20,7 @@
                 @endforeach
             </div>
             <button @click="$dispatch('open-modal-create-task')"
-                    class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+                    class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
                 <x-icon name="plus" class="w-4 h-4" />
                 New Task
             </button>
@@ -83,7 +83,7 @@
         </div>
 
         {{-- Legend --}}
-        <div class="mt-4 flex items-center justify-center gap-6 text-xs text-gray-400 dark:text-gray-500">
+        <div class="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-center gap-1 sm:gap-6 text-xs text-gray-400 dark:text-gray-500">
             <span><strong class="text-gray-600 dark:text-gray-300">Urgent</strong> = High or Urgent priority</span>
             <span><strong class="text-gray-600 dark:text-gray-300">Important</strong> = marked via checkbox on task</span>
         </div>

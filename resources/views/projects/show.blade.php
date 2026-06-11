@@ -5,7 +5,7 @@
     <div class="max-w-4xl">
         {{-- Project info --}}
         <x-ui.card class="mb-6">
-            <div class="flex items-start justify-between mb-3">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between mb-3">
                 <div>
                     <div class="flex items-center gap-2 mb-1">
                         <div class="w-2.5 h-2.5 rounded-full" style="background-color: {{ $project->lifeArea->color }}"></div>
@@ -19,11 +19,11 @@
                         <p class="text-sm text-gray-500">{{ $project->description }}</p>
                     @endif
                 </div>
-                <div class="flex items-center gap-2">
-                    <form method="POST" action="{{ route('projects.update-status', $project) }}" class="inline">
+                <div class="flex items-center gap-2 shrink-0">
+                    <form method="POST" action="{{ route('projects.update-status', $project) }}" class="inline flex-1 sm:flex-none">
                         @csrf
                         @method('PATCH')
-                        <select name="status" onchange="this.form.submit()" class="rounded-md border-gray-300 text-xs">
+                        <select name="status" onchange="this.form.submit()" class="w-full sm:w-auto rounded-md border-gray-300 text-xs">
                             @foreach(['not_started', 'in_progress', 'on_hold', 'completed', 'archived'] as $s)
                                 <option value="{{ $s }}" @selected($project->status === $s)>{{ str_replace('_', ' ', ucfirst($s)) }}</option>
                             @endforeach
@@ -77,7 +77,7 @@
                             @if($task->due_date)
                                 <span class="text-xs {{ $task->isOverdue() ? 'text-rose-500' : 'text-gray-400' }}">{{ $task->due_date->format('M j') }}</span>
                             @endif
-                            <form method="POST" action="{{ route('tasks.destroy', $task) }}" onsubmit="return confirm('Delete this task?')" class="opacity-0 group-hover:opacity-100 transition-opacity">
+                            <form method="POST" action="{{ route('tasks.destroy', $task) }}" onsubmit="return confirm('Delete this task?')" class="shrink-0 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="p-1 text-gray-300 hover:text-rose-500 transition-colors" title="Delete task">
@@ -90,19 +90,19 @@
             @endif
 
             {{-- Inline add task --}}
-            <form method="POST" action="{{ route('tasks.store') }}" class="flex items-center gap-2 pt-3 border-t border-gray-100">
+            <form method="POST" action="{{ route('tasks.store') }}" class="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-100">
                 @csrf
                 <input type="hidden" name="project_id" value="{{ $project->id }}">
                 <input type="hidden" name="goal_id" value="{{ $project->goal_id }}">
                 <input type="text" name="title" placeholder="Add a task..."
-                       class="flex-1 rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500" required>
-                <select name="effort" class="rounded-lg border-gray-300 text-xs w-24">
+                       class="w-full sm:flex-1 sm:w-auto min-w-0 rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                <select name="effort" class="flex-1 sm:flex-none sm:w-24 rounded-lg border-gray-300 text-xs">
                     <option value="small">Small</option>
                     <option value="medium" selected>Medium</option>
                     <option value="large">Large</option>
                 </select>
-                <input type="date" name="due_date" class="rounded-lg border-gray-300 text-xs">
-                <button type="submit" class="px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">Add</button>
+                <input type="date" name="due_date" class="flex-1 sm:flex-none rounded-lg border-gray-300 text-xs">
+                <button type="submit" class="shrink-0 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">Add</button>
             </form>
         </x-ui.card>
     </div>
