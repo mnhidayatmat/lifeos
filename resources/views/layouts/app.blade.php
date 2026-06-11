@@ -18,6 +18,8 @@
             }
         </script>
 
+        @include('layouts.pwa-head')
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
