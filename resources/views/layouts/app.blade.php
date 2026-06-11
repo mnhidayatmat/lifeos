@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ isset($title) ? $title . ' — ' : '' }}{{ config('app.name', 'LifeOS') }}</title>
@@ -32,7 +32,8 @@
                 @include('layouts.topbar')
 
                 {{-- Page Content --}}
-                <main class="flex-1 p-4 sm:p-6 lg:p-8">
+                {{-- pb-24 on mobile clears the fixed bottom tab bar; reset on lg --}}
+                <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-24 sm:pb-24 lg:pb-8">
                     {{-- Flash Messages --}}
                     @if (session('success'))
                         <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)"
@@ -53,7 +54,10 @@
              x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
              @click="sidebarOpen = false" class="fixed inset-0 bg-gray-900/50 dark:bg-black/60 z-30 lg:hidden" style="display: none;"></div>
 
+        {{-- Mobile bottom tab bar --}}
+        @include('layouts.bottom-nav')
+
         {{-- Toast Container --}}
-        <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
+        <div id="toast-container" class="fixed bottom-20 right-4 lg:bottom-4 z-50 flex flex-col gap-2"></div>
     </body>
 </html>

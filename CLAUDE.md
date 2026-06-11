@@ -71,8 +71,9 @@ Blade components in `resources/views/components/ui/`: `card`, `badge`, `modal` (
 ### Layouts
 - `layouts/app.blade.php` — authenticated shell with sidebar + topbar, wrapped in `x-data="{ sidebarOpen: false }"`
 - `layouts/guest.blade.php` — split-screen auth layout (indigo gradient left, form right)
-- `layouts/sidebar.blade.php` — fixed 64px sidebar with nav links
+- `layouts/sidebar.blade.php` — fixed sidebar (desktop) / slide-in drawer (mobile, toggled by `sidebarOpen`)
 - `layouts/topbar.blade.php` — sticky topbar with notifications + user menu
+- `layouts/bottom-nav.blade.php` — mobile-only bottom tab bar (thumb-zone nav: Home/Tasks/Goals/Projects/More); `lg:hidden`, hides while the drawer is open. Modals (`components/ui/modal`) render as bottom sheets on mobile and centered dialogs on desktop.
 
 ### Database
 Key models beyond the hierarchy: `Streak` (consistency), `Achievement`/`UserAchievement` (milestones — table names kept), `Review` (daily/weekly/monthly with JSON responses), `Habit`/`HabitLog`, `Vision`, `IdentityTrait`, `Resource`. The `user_stats` and `xp_logs` tables and the `total_xp`/`level`/`rank`/`title` (users), `primary_stat`/`secondary_stat` (life_areas), `xp_awarded` (tasks/reviews/resources/habit_logs), `linked_stat` (identity_traits), and `xp_reward` (achievements) columns were dropped in `2026_06_11_000000_remove_gamification_fields`.
