@@ -2,9 +2,9 @@
     <x-slot name="header">Dashboard</x-slot>
     <x-slot name="title">Dashboard</x-slot>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
         {{-- Main Column --}}
-        <div class="lg:col-span-2 space-y-6">
+        <div class="lg:col-span-2 space-y-4 lg:space-y-6">
             {{-- Domino Goal --}}
             @if($dominoGoal)
                 <x-ui.card class="border-amber-200 dark:border-amber-900/50 bg-amber-50/30 dark:bg-amber-950/10">
@@ -162,26 +162,26 @@
         </div>
 
         {{-- Insights Sidebar --}}
-        <div class="space-y-6">
+        <div class="space-y-4 lg:space-y-6">
             {{-- This Week --}}
             <x-ui.card>
-                <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">This week</h3>
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-3">
-                        <p class="text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $tasksThisWeek }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Tasks done</p>
+                <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-3 lg:mb-4">This week</h3>
+                <div class="grid grid-cols-4 lg:grid-cols-2 gap-2 lg:gap-3">
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-2.5 lg:p-3">
+                        <p class="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $tasksThisWeek }}</p>
+                        <p class="text-[11px] lg:text-xs leading-tight text-gray-500 dark:text-gray-400 mt-0.5">Tasks done</p>
                     </div>
-                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-3">
-                        <p class="text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $tasksToday }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Done today</p>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-2.5 lg:p-3">
+                        <p class="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $tasksToday }}</p>
+                        <p class="text-[11px] lg:text-xs leading-tight text-gray-500 dark:text-gray-400 mt-0.5">Done today</p>
                     </div>
-                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-3">
-                        <p class="text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $currentStreak }}<span class="text-sm font-normal text-gray-400"> day{{ $currentStreak === 1 ? '' : 's' }}</span></p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Current streak</p>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-2.5 lg:p-3">
+                        <p class="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $currentStreak }}<span class="hidden lg:inline text-sm font-normal text-gray-400"> day{{ $currentStreak === 1 ? '' : 's' }}</span></p>
+                        <p class="text-[11px] lg:text-xs leading-tight text-gray-500 dark:text-gray-400 mt-0.5">Day streak</p>
                     </div>
-                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-3">
-                        <p class="text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $activeGoalCount }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Active goals</p>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-800/60 p-2.5 lg:p-3">
+                        <p class="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white tabular-nums">{{ $activeGoalCount }}</p>
+                        <p class="text-[11px] lg:text-xs leading-tight text-gray-500 dark:text-gray-400 mt-0.5">Active goals</p>
                     </div>
                 </div>
             </x-ui.card>
