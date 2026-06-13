@@ -29,9 +29,7 @@
                 <div class="relative z-10 flex flex-col justify-between p-12 w-full">
                     {{-- Logo --}}
                     <a href="/" class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
-                            <span class="text-white font-bold text-base">L</span>
-                        </div>
+                        <img src="{{ asset('icons/icon-192.png') }}?v=2" alt="LifeOS logo" class="w-9 h-9 rounded-xl shadow-sm ring-1 ring-white/20">
                         <span class="text-xl font-semibold text-white tracking-tight">LifeOS</span>
                     </a>
 
@@ -79,9 +77,7 @@
                 {{-- Mobile Logo (hidden on desktop) --}}
                 <div class="mb-8 flex items-center gap-2.5 lg:hidden">
                     <a href="/" class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 bg-teal-600 rounded-xl flex items-center justify-center">
-                            <span class="text-white font-bold text-base">L</span>
-                        </div>
+                        <img src="{{ asset('icons/icon-192.png') }}?v=2" alt="LifeOS logo" class="w-9 h-9 rounded-xl shadow-sm">
                         <span class="text-xl font-semibold text-gray-900 dark:text-white tracking-tight">LifeOS</span>
                     </a>
                 </div>
