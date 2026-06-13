@@ -8,15 +8,16 @@
  *  - Only same-origin GET requests are handled. POST/PUT/etc. always hit the network.
  */
 
-const VERSION = 'v2';
+// bump VERSION on every icon/asset change to purge old service-worker caches
+const VERSION = 'v3';
 const PRECACHE = `lifeos-precache-${VERSION}`;
 const RUNTIME = `lifeos-runtime-${VERSION}`;
 
 const PRECACHE_URLS = [
     '/offline.html',
     '/manifest.webmanifest',
-    '/icons/icon-192.png',
-    '/icons/icon-512.png',
+    '/icons/icon-192.png?v=2',
+    '/icons/icon-512.png?v=2',
 ];
 
 self.addEventListener('install', (event) => {
