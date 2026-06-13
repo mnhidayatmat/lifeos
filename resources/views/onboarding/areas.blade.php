@@ -18,7 +18,7 @@
 
         <form method="POST" action="{{ route('onboarding.store-areas') }}">
             @csrf
-            <button type="submit" class="w-full px-4 py-3 text-sm font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-colors">
+            <button type="submit" class="w-full px-4 py-3 text-sm font-medium text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition-colors">
                 Looks Good — Continue
             </button>
         </form>

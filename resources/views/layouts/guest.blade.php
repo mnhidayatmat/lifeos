@@ -25,7 +25,7 @@
     <body class="font-sans text-gray-900 dark:text-gray-100 antialiased">
         <div class="min-h-screen flex">
             {{-- Left Panel: Branding --}}
-            <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-800 relative overflow-hidden">
+            <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-teal-600 via-teal-700 to-violet-800 relative overflow-hidden">
                 <div class="relative z-10 flex flex-col justify-between p-12 w-full">
                     {{-- Logo --}}
                     <a href="/" class="flex items-center gap-2.5">
@@ -40,7 +40,7 @@
                         <blockquote class="text-3xl font-bold text-white leading-tight tracking-tight">
                             Everything you're working toward, in one place.
                         </blockquote>
-                        <p class="mt-4 text-indigo-200 leading-relaxed">
+                        <p class="mt-4 text-teal-200 leading-relaxed">
                             Connect your life areas, goals, projects, and daily tasks into one clear system — and see real progress without the noise.
                         </p>
 
@@ -55,10 +55,10 @@
                             @endphp
                             @foreach ($highlights as $item)
                                 <div class="flex items-start gap-3">
-                                    <svg class="w-5 h-5 text-indigo-200 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    <svg class="w-5 h-5 text-teal-200 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                                     <div>
                                         <p class="text-sm font-semibold text-white">{{ $item['title'] }}</p>
-                                        <p class="text-xs text-indigo-300 leading-relaxed">{{ $item['desc'] }}</p>
+                                        <p class="text-xs text-teal-300 leading-relaxed">{{ $item['desc'] }}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -66,7 +66,7 @@
                     </div>
 
                     {{-- Bottom --}}
-                    <p class="text-sm text-indigo-300">&copy; {{ date('Y') }} LifeOS</p>
+                    <p class="text-sm text-teal-300">&copy; {{ date('Y') }} LifeOS</p>
                 </div>
 
                 {{-- Decorative Elements --}}
@@ -79,7 +79,7 @@
                 {{-- Mobile Logo (hidden on desktop) --}}
                 <div class="mb-8 flex items-center gap-2.5 lg:hidden">
                     <a href="/" class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center">
+                        <div class="w-9 h-9 bg-teal-600 rounded-xl flex items-center justify-center">
                             <span class="text-white font-bold text-base">L</span>
                         </div>
                         <span class="text-xl font-semibold text-gray-900 dark:text-white tracking-tight">LifeOS</span>

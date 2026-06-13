@@ -13,7 +13,7 @@
                 <div>
                     <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Goal</label>
                     <input type="text" name="title" id="title"
-                           class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                           class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500"
                            placeholder="e.g., Complete my thesis, Launch MVP, Get fit" required>
                     @error('title') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </div>
@@ -21,7 +21,7 @@
                 <div>
                     <label for="life_area_id" class="block text-sm font-medium text-gray-700 mb-1">Life Area</label>
                     <select name="life_area_id" id="life_area_id"
-                            class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                            class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500" required>
                         @foreach($areas as $area)
                             <option value="{{ $area->id }}">{{ $area->name }}</option>
                         @endforeach
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="w-full mt-6 px-4 py-3 text-sm font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-colors">
+            <button type="submit" class="w-full mt-6 px-4 py-3 text-sm font-medium text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition-colors">
                 Create Goal & Start
             </button>
         </form>

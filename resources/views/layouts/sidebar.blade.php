@@ -5,7 +5,7 @@
     {{-- Logo --}}
     <div class="h-16 flex items-center px-6 border-b border-gray-100 dark:border-gray-800">
         <a href="{{ route('dashboard') }}" class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+            <div class="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
                 <span class="text-white font-bold text-sm">L</span>
             </div>
             <span class="text-lg font-semibold text-gray-900 dark:text-white tracking-tight">LifeOS</span>
@@ -73,8 +73,8 @@
     {{-- User Section --}}
     <div class="border-t border-gray-100 dark:border-gray-800 p-4">
         <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
-                <span class="text-sm font-medium text-indigo-700 dark:text-indigo-400">{{ substr(Auth::user()->name, 0, 1) }}</span>
+            <div class="w-9 h-9 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center">
+                <span class="text-sm font-medium text-teal-700 dark:text-teal-400">{{ substr(Auth::user()->name, 0, 1) }}</span>
             </div>
             <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{{ Auth::user()->name }}</p>

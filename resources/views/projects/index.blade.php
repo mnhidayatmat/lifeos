@@ -7,7 +7,7 @@
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
             <div class="flex items-center gap-2 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 no-scrollbar">
                 <a href="{{ route('projects.index') }}"
-                   class="shrink-0 whitespace-nowrap px-3 py-1.5 text-sm rounded-lg {{ !$areaFilter && !$goalFilter ? 'bg-indigo-50 text-indigo-700 font-medium' : 'text-gray-500 hover:bg-gray-100' }}">
+                   class="shrink-0 whitespace-nowrap px-3 py-1.5 text-sm rounded-lg {{ !$areaFilter && !$goalFilter ? 'bg-teal-50 text-teal-700 font-medium' : 'text-gray-500 hover:bg-gray-100' }}">
                     All
                 </a>
                 @foreach($areas as $area)
@@ -19,7 +19,7 @@
                 @endforeach
             </div>
             <button @click="$dispatch('open-modal-create-project')"
-                    class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+                    class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
                 <x-icon name="plus" class="w-4 h-4" />
                 New Project
             </button>
@@ -34,7 +34,7 @@
                     <h3 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">No projects yet</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm">Create a project to organise tasks under your goals.</p>
                     <button @click="$dispatch('open-modal-create-project')"
-                            class="mt-4 inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors">
+                            class="mt-4 inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950 rounded-lg hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors">
                         <x-icon name="plus" class="w-4 h-4" />
                         Create Project
                     </button>
@@ -87,7 +87,7 @@
             @include('projects._form', ['project' => null])
             <div class="flex items-center justify-end gap-3 mt-6">
                 <button type="button" @click="$dispatch('close-modal-create-project')" class="text-sm text-gray-500 hover:text-gray-700">Cancel</button>
-                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">Create</button>
+                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700">Create</button>
             </div>
         </form>
     </x-ui.modal>

@@ -10,13 +10,13 @@
                 <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Vision Statement</h2>
                 <button type="button"
                         @click="$dispatch('open-modal-edit-vision')"
-                        class="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                        class="text-sm font-medium text-teal-600 hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-300">
                     Edit
                 </button>
             </div>
 
             @if($vision && $vision->vision_statement)
-                <blockquote class="border-l-4 border-indigo-400 dark:border-indigo-600 pl-4 py-2 text-gray-700 dark:text-gray-300 italic leading-relaxed">
+                <blockquote class="border-l-4 border-teal-400 dark:border-teal-600 pl-4 py-2 text-gray-700 dark:text-gray-300 italic leading-relaxed">
                     {{ $vision->vision_statement }}
                 </blockquote>
             @else
@@ -41,13 +41,13 @@
                     <div>
                         <label for="vision_statement" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Vision Statement</label>
                         <textarea name="vision_statement" id="vision_statement" rows="4"
-                                  class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                                  class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm"
                                   placeholder="Describe the future you are building toward...">{{ $vision?->vision_statement }}</textarea>
                     </div>
                     <div>
                         <label for="anti_vision" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Anti-Vision</label>
                         <textarea name="anti_vision" id="anti_vision" rows="3"
-                                  class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                                  class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm"
                                   placeholder="What does the life you refuse to live look like?">{{ $vision?->anti_vision }}</textarea>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         Cancel
                     </button>
                     <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400">
+                            class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-500 dark:bg-teal-500 dark:hover:bg-teal-400">
                         Save
                     </button>
                 </div>
@@ -71,7 +71,7 @@
                 <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">I Am Statements</h2>
                 <button type="button"
                         @click="$dispatch('open-modal-edit-iam')"
-                        class="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                        class="text-sm font-medium text-teal-600 hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-300">
                     Edit
                 </button>
             </div>
@@ -79,7 +79,7 @@
             @if($vision && is_array($vision->i_am_statements) && count($vision->i_am_statements) > 0)
                 <div class="flex flex-wrap gap-2">
                     @foreach($vision->i_am_statements as $statement)
-                        <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-teal-50 text-teal-700 dark:bg-teal-950 dark:text-teal-300 border border-teal-200 dark:border-teal-800">
                             I am {{ $statement }}
                         </span>
                     @endforeach
@@ -98,7 +98,7 @@
                 <div>
                     <label for="statements" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Statements (one per line)</label>
                     <textarea name="statements" id="statements" rows="6"
-                              class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                              class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm"
                               placeholder="disciplined&#10;a lifelong learner&#10;focused on growth">{{ $vision && is_array($vision->i_am_statements) ? implode("\n", $vision->i_am_statements) : '' }}</textarea>
                     <p class="mt-1 text-xs text-gray-400 dark:text-gray-500">Each line becomes an "I am..." statement.</p>
                 </div>
@@ -109,7 +109,7 @@
                         Cancel
                     </button>
                     <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400">
+                            class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-500 dark:bg-teal-500 dark:hover:bg-teal-400">
                         Save
                     </button>
                 </div>
@@ -122,7 +122,7 @@
                 <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Identity Traits</h2>
                 <button type="button"
                         @click="$dispatch('open-modal-add-trait')"
-                        class="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                        class="text-sm font-medium text-teal-600 hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-300">
                     Add Trait
                 </button>
             </div>
@@ -151,7 +151,7 @@
                                     @method('PATCH')
                                     <select name="status"
                                             onchange="this.form.submit()"
-                                            class="text-xs rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-1 pl-2 pr-7 focus:ring-indigo-500 focus:border-indigo-500">
+                                            class="text-xs rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-1 pl-2 pr-7 focus:ring-teal-500 focus:border-teal-500">
                                         <option value="aspirational" @selected($identityTrait->status === 'aspirational')>Aspirational</option>
                                         <option value="developing" @selected($identityTrait->status === 'developing')>Developing</option>
                                         <option value="integrated" @selected($identityTrait->status === 'integrated')>Integrated</option>
@@ -190,14 +190,14 @@
                     <div>
                         <label for="trait" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Trait</label>
                         <input type="text" name="trait" id="trait" required
-                               class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                               class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm"
                                placeholder="e.g. Disciplined, Creative, Resilient">
                     </div>
 
                     <div>
                         <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
                         <select name="status" id="status" required
-                                class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm">
                             <option value="aspirational">Aspirational</option>
                             <option value="developing">Developing</option>
                             <option value="integrated">Integrated</option>
@@ -211,7 +211,7 @@
                         Cancel
                     </button>
                     <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400">
+                            class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-500 dark:bg-teal-500 dark:hover:bg-teal-400">
                         Add Trait
                     </button>
                 </div>

@@ -28,7 +28,7 @@
                             <span class="text-sm font-medium text-gray-700">Progress</span>
                             <span class="text-sm font-bold text-gray-900">{{ $goal->progress }}%</span>
                         </div>
-                        <x-ui.progress-bar :value="$goal->progress" color="indigo" size="lg" />
+                        <x-ui.progress-bar :value="$goal->progress" color="teal" size="lg" />
                     </div>
 
                     {{-- KPI / Manual progress update --}}
@@ -41,7 +41,7 @@
                                    value="{{ $goal->current_value }}"
                                    class="w-24 rounded-md border-gray-300 text-sm">
                             <span class="text-xs text-gray-500">/ {{ $goal->target_value }}</span>
-                            <button type="submit" class="px-3 py-1.5 text-xs font-medium text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100">Update</button>
+                            <button type="submit" class="px-3 py-1.5 text-xs font-medium text-teal-600 bg-teal-50 rounded-md hover:bg-teal-100">Update</button>
                         </form>
                     @elseif($goal->progress_type === 'manual')
                         <form method="POST" action="{{ route('goals.update-progress', $goal) }}" class="flex items-center gap-2 mt-3 p-3 bg-gray-50 rounded-lg">
@@ -51,7 +51,7 @@
                             <input type="range" name="manual_progress" min="0" max="100" value="{{ $goal->manual_progress }}"
                                    class="flex-1" oninput="this.nextElementSibling.textContent = this.value + '%'">
                             <span class="text-xs font-medium text-gray-700 w-10">{{ $goal->manual_progress }}%</span>
-                            <button type="submit" class="px-3 py-1.5 text-xs font-medium text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100">Update</button>
+                            <button type="submit" class="px-3 py-1.5 text-xs font-medium text-teal-600 bg-teal-50 rounded-md hover:bg-teal-100">Update</button>
                         </form>
                     @endif
 
@@ -71,7 +71,7 @@
                             @csrf
                             @method('PATCH')
                             <select name="status" onchange="this.form.submit()"
-                                    class="rounded-md border-gray-300 text-xs focus:border-indigo-500 focus:ring-indigo-500">
+                                    class="rounded-md border-gray-300 text-xs focus:border-teal-500 focus:ring-teal-500">
                                 @foreach(['not_started', 'in_progress', 'on_hold', 'completed', 'abandoned'] as $status)
                                     <option value="{{ $status }}" @selected($goal->status === $status)>
                                         {{ str_replace('_', ' ', ucfirst($status)) }}
@@ -119,7 +119,7 @@
                         <div class="space-y-2">
                             @foreach($goal->tasks as $task)
                                 <div class="flex items-center gap-3 p-2">
-                                    <div class="w-5 h-5 rounded border-2 {{ $task->isCompleted() ? 'bg-indigo-500 border-indigo-500' : 'border-gray-300' }} flex items-center justify-center">
+                                    <div class="w-5 h-5 rounded border-2 {{ $task->isCompleted() ? 'bg-teal-500 border-teal-500' : 'border-gray-300' }} flex items-center justify-center">
                                         @if($task->isCompleted())
                                             <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>

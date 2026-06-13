@@ -62,7 +62,7 @@
 
         <!-- Submit -->
         <div class="mt-6">
-            <button type="submit" class="w-full flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition shadow-sm">
+            <button type="submit" class="w-full flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-teal-600 rounded-lg hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition shadow-sm">
                 Create Account
             </button>
         </div>
@@ -70,7 +70,7 @@
         <!-- Login Link -->
         <p class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
             Already have an account?
-            <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-700 transition">
+            <a href="{{ route('login') }}" class="font-medium text-teal-600 hover:text-teal-700 transition">
                 Sign in
             </a>
         </p>

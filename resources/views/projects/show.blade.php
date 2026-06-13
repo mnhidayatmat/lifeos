@@ -12,7 +12,7 @@
                         <span class="text-xs font-medium" style="color: {{ $project->lifeArea->color }}">{{ $project->lifeArea->name }}</span>
                         @if($project->goal)
                             <span class="text-xs text-gray-400">/</span>
-                            <a href="{{ route('goals.show', $project->goal) }}" class="text-xs text-gray-500 hover:text-indigo-600">{{ $project->goal->title }}</a>
+                            <a href="{{ route('goals.show', $project->goal) }}" class="text-xs text-gray-500 hover:text-teal-600">{{ $project->goal->title }}</a>
                         @endif
                     </div>
                     @if($project->description)
@@ -29,7 +29,7 @@
                             @endforeach
                         </select>
                     </form>
-                    <a href="{{ route('projects.edit', $project) }}" class="p-1.5 text-gray-400 hover:text-indigo-600 transition-colors" title="Edit project">
+                    <a href="{{ route('projects.edit', $project) }}" class="p-1.5 text-gray-400 hover:text-teal-600 transition-colors" title="Edit project">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                     </a>
                     <form method="POST" action="{{ route('projects.destroy', $project) }}" onsubmit="return confirm('Delete this project and all its tasks?')">
@@ -41,7 +41,7 @@
                     </form>
                 </div>
             </div>
-            <x-ui.progress-bar :value="$project->progress" color="indigo" size="sm" :showLabel="true">
+            <x-ui.progress-bar :value="$project->progress" color="teal" size="sm" :showLabel="true">
                 {{ $project->tasks->where('status', 'completed')->count() }} / {{ $project->tasks->count() }} tasks
             </x-ui.progress-bar>
         </x-ui.card>
@@ -62,7 +62,7 @@
                             <form method="POST" action="{{ $task->isCompleted() ? route('tasks.reopen', $task) : route('tasks.complete', $task) }}">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="w-5 h-5 rounded border-2 {{ $task->isCompleted() ? 'bg-indigo-500 border-indigo-500' : 'border-gray-300 hover:border-indigo-400' }} flex items-center justify-center transition-colors">
+                                <button type="submit" class="w-5 h-5 rounded border-2 {{ $task->isCompleted() ? 'bg-teal-500 border-teal-500' : 'border-gray-300 hover:border-teal-400' }} flex items-center justify-center transition-colors">
                                     @if($task->isCompleted())
                                         <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
@@ -95,14 +95,14 @@
                 <input type="hidden" name="project_id" value="{{ $project->id }}">
                 <input type="hidden" name="goal_id" value="{{ $project->goal_id }}">
                 <input type="text" name="title" placeholder="Add a task..."
-                       class="w-full sm:flex-1 sm:w-auto min-w-0 rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                       class="w-full sm:flex-1 sm:w-auto min-w-0 rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500" required>
                 <select name="effort" class="flex-1 sm:flex-none sm:w-24 rounded-lg border-gray-300 text-xs">
                     <option value="small">Small</option>
                     <option value="medium" selected>Medium</option>
                     <option value="large">Large</option>
                 </select>
                 <input type="date" name="due_date" class="flex-1 sm:flex-none rounded-lg border-gray-300 text-xs">
-                <button type="submit" class="shrink-0 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">Add</button>
+                <button type="submit" class="shrink-0 px-3 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700">Add</button>
             </form>
         </x-ui.card>
     </div>

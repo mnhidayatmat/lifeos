@@ -4,8 +4,8 @@
     <x-ui.card>
         <div class="text-center py-6">
             {{-- Check badge --}}
-            <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 mx-auto mb-5 flex items-center justify-center">
-                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-16 h-16 rounded-2xl bg-teal-50 dark:bg-teal-950/50 mx-auto mb-5 flex items-center justify-center">
+                <svg class="w-8 h-8 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
             </div>
@@ -16,7 +16,7 @@
             </p>
 
             <a href="{{ route('dashboard') }}"
-               class="inline-flex px-6 py-3 text-sm font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-colors">
+               class="inline-flex px-6 py-3 text-sm font-medium text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition-colors">
                 Go to Dashboard
             </a>
         </div>

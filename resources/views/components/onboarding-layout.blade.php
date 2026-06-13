@@ -24,7 +24,7 @@
         <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
             {{-- Logo --}}
             <div class="mb-8 flex items-center gap-2">
-                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+                <div class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center">
                     <span class="text-white font-bold text-lg">L</span>
                 </div>
                 <span class="text-2xl font-semibold text-gray-900 dark:text-white tracking-tight">LifeOS</span>

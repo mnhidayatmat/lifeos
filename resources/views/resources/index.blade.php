@@ -8,13 +8,13 @@
             <div class="flex items-center gap-1">
                 @foreach(['all' => 'All', 'to_consume' => 'To Read', 'in_progress' => 'In Progress', 'completed' => 'Completed'] as $key => $label)
                     <a href="{{ route('resources.index', $key === 'all' ? [] : ['status' => $key]) }}"
-                       class="px-3 py-1.5 text-sm rounded-lg {{ $statusFilter === $key ? 'bg-indigo-50 text-indigo-700 font-medium dark:bg-indigo-950 dark:text-indigo-400' : 'text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800' }}">
+                       class="px-3 py-1.5 text-sm rounded-lg {{ $statusFilter === $key ? 'bg-teal-50 text-teal-700 font-medium dark:bg-teal-950 dark:text-teal-400' : 'text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800' }}">
                         {{ $label }}
                     </a>
                 @endforeach
             </div>
             <button @click="$dispatch('open-modal-create-resource')"
-                    class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+                    class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
                 <x-icon name="plus" class="w-4 h-4" />
                 Add Resource
             </button>
@@ -43,7 +43,7 @@
                         ];
                         $statusColors = [
                             'to_consume'  => 'gray',
-                            'in_progress' => 'indigo',
+                            'in_progress' => 'teal',
                             'completed'   => 'emerald',
                         ];
                         $statusLabels = [
@@ -73,7 +73,7 @@
 
                                 <h3 class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                                     @if($resource->url)
-                                        <a href="{{ $resource->url }}" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 dark:hover:text-indigo-400">
+                                        <a href="{{ $resource->url }}" target="_blank" rel="noopener noreferrer" class="hover:text-teal-600 dark:hover:text-teal-400">
                                             {{ $resource->title }}
                                         </a>
                                     @else
@@ -121,7 +121,7 @@
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title <span class="text-rose-500">*</span></label>
                 <input type="text" name="title" id="title" required
-                       class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                       class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-teal-500 focus:ring-teal-500"
                        placeholder="e.g. Atomic Habits">
                 @error('title')
                     <p class="mt-1 text-xs text-rose-500">{{ $message }}</p>
@@ -132,7 +132,7 @@
             <div class="mb-4">
                 <label for="type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Type</label>
                 <select name="type" id="type"
-                        class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-teal-500 focus:ring-teal-500">
                     <option value="book">Book</option>
                     <option value="article">Article</option>
                     <option value="podcast">Podcast</option>
@@ -148,7 +148,7 @@
             <div class="mb-4">
                 <label for="author" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Author</label>
                 <input type="text" name="author" id="author"
-                       class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                       class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-teal-500 focus:ring-teal-500"
                        placeholder="e.g. James Clear">
                 @error('author')
                     <p class="mt-1 text-xs text-rose-500">{{ $message }}</p>
@@ -159,7 +159,7 @@
             <div class="mb-4">
                 <label for="url" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">URL</label>
                 <input type="url" name="url" id="url"
-                       class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                       class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-teal-500 focus:ring-teal-500"
                        placeholder="https://...">
                 @error('url')
                     <p class="mt-1 text-xs text-rose-500">{{ $message }}</p>
@@ -170,7 +170,7 @@
             <div class="mb-4">
                 <label for="life_area_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Life Area</label>
                 <select name="life_area_id" id="life_area_id"
-                        class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-teal-500 focus:ring-teal-500">
                     <option value="">None</option>
                     @foreach($areas as $area)
                         <option value="{{ $area->id }}">{{ $area->name }}</option>
@@ -185,7 +185,7 @@
             <div class="mb-4">
                 <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
                 <select name="status" id="status"
-                        class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 text-sm focus:border-teal-500 focus:ring-teal-500">
                     <option value="to_consume">To Read</option>
                     <option value="in_progress">In Progress</option>
                     <option value="completed">Completed</option>
@@ -198,7 +198,7 @@
             {{-- Actions --}}
             <div class="flex items-center justify-end gap-3 mt-6">
                 <button type="button" @click="$dispatch('close-modal-create-resource')" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">Cancel</button>
-                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">Add Resource</button>
+                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">Add Resource</button>
             </div>
         </form>
     </x-ui.modal>

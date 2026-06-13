@@ -10,7 +10,7 @@
             </div>
             @if($areas->count() < 10)
                 <button @click="$dispatch('open-modal-create-area')"
-                        class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+                        class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
                     <x-icon name="plus" class="w-4 h-4" />
                     Add Area
                 </button>
@@ -83,7 +83,7 @@
                             <div class="flex items-center justify-between mt-6">
                                 <button type="button" @click="$dispatch('close-modal-edit-area-{{ $area->id }}')" class="text-sm text-gray-500 hover:text-gray-700">Cancel</button>
                                 <div class="flex items-center gap-3">
-                                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">Save Changes</button>
+                                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700">Save Changes</button>
                                 </div>
                             </div>
                         </form>
@@ -139,7 +139,7 @@
             @include('life-areas._form', ['area' => null])
             <div class="flex items-center justify-end gap-3 mt-6">
                 <button type="button" @click="$dispatch('close-modal-create-area')" class="text-sm text-gray-500 hover:text-gray-700">Cancel</button>
-                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">Create</button>
+                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700">Create</button>
             </div>
         </form>
     </x-ui.modal>

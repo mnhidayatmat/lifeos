@@ -7,7 +7,7 @@
             <div class="flex justify-end mb-4">
                 <form method="POST" action="{{ route('notifications.mark-all-read') }}">
                     @csrf
-                    <button type="submit" class="text-xs text-indigo-600 hover:text-indigo-700">Mark all as read</button>
+                    <button type="submit" class="text-xs text-teal-600 hover:text-teal-700">Mark all as read</button>
                 </form>
             </div>
         @endif

@@ -14,7 +14,7 @@
     @endif
 
     @if($action)
-        <a href="{{ $actionUrl ?? '#' }}" class="mt-4 inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors">
+        <a href="{{ $actionUrl ?? '#' }}" class="mt-4 inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950 rounded-lg hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors">
             <x-icon name="plus" class="w-4 h-4" />
             {{ $action }}
         </a>

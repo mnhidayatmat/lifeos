@@ -1,10 +1,9 @@
-@props(['value' => 0, 'max' => 100, 'color' => 'indigo', 'size' => 'md', 'showLabel' => false])
+@props(['value' => 0, 'max' => 100, 'color' => 'teal', 'size' => 'md', 'showLabel' => false])
 
 @php
 $percentage = $max > 0 ? min(100, round(($value / $max) * 100)) : 0;
 
 $barColors = [
-    'indigo'  => 'bg-indigo-500',
     'emerald' => 'bg-emerald-500',
     'amber'   => 'bg-amber-500',
     'rose'    => 'bg-rose-500',
@@ -20,7 +19,7 @@ $heights = [
     'lg' => 'h-3',
 ];
 
-$barColor = $barColors[$color] ?? $barColors['indigo'];
+$barColor = $barColors[$color] ?? $barColors['teal'];
 $height = $heights[$size] ?? $heights['md'];
 @endphp
 

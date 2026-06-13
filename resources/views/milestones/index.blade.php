@@ -14,7 +14,7 @@
 
         {{-- Progress bar --}}
         <div class="h-1.5 w-full rounded-full bg-gray-100 dark:bg-gray-800">
-            <div class="h-1.5 rounded-full bg-indigo-500 transition-all" style="width: {{ $totalCount > 0 ? ($unlockedCount / $totalCount) * 100 : 0 }}%"></div>
+            <div class="h-1.5 rounded-full bg-teal-500 transition-all" style="width: {{ $totalCount > 0 ? ($unlockedCount / $totalCount) * 100 : 0 }}%"></div>
         </div>
 
         {{-- Grid --}}
@@ -27,7 +27,7 @@
                         : 'border-gray-100 dark:border-gray-800/60 bg-gray-50/60 dark:bg-gray-900/40' }}">
                     <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0
                         {{ $isUnlocked
-                            ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400'
+                            ? 'bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400'
                             : 'bg-gray-100 dark:bg-gray-800 text-gray-300 dark:text-gray-600' }}">
                         @if($isUnlocked)
                             <x-icon :name="$milestone->icon ?? 'check-square'" class="w-5 h-5" />

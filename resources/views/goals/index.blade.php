@@ -8,7 +8,7 @@
             <div class="flex items-center gap-2 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 no-scrollbar">
                 {{-- Area filter tabs --}}
                 <a href="{{ route('goals.index') }}"
-                   class="shrink-0 whitespace-nowrap px-3 py-1.5 text-sm rounded-lg {{ !$areaFilter ? 'bg-indigo-50 text-indigo-700 font-medium' : 'text-gray-500 hover:bg-gray-100' }}">
+                   class="shrink-0 whitespace-nowrap px-3 py-1.5 text-sm rounded-lg {{ !$areaFilter ? 'bg-teal-50 text-teal-700 font-medium' : 'text-gray-500 hover:bg-gray-100' }}">
                     All
                 </a>
                 @foreach($areas as $area)
@@ -20,7 +20,7 @@
                 @endforeach
             </div>
             <a href="{{ route('goals.create') }}"
-               class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+               class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
                 <x-icon name="plus" class="w-4 h-4" />
                 New Goal
             </a>
@@ -80,7 +80,7 @@
                                     </div>
 
                                     {{-- Progress --}}
-                                    <x-ui.progress-bar :value="$goal->progress" color="indigo" size="sm" />
+                                    <x-ui.progress-bar :value="$goal->progress" color="teal" size="sm" />
                                 </div>
 
                                 {{-- Progress number --}}

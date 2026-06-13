@@ -66,7 +66,7 @@ Manual `abort_unless($model->user_id === auth()->id(), 403)` in a private `autho
 Blade components in `resources/views/components/ui/`: `card`, `badge`, `modal` (Alpine-driven, opened via `$dispatch('open-modal-{name}')`), `empty-state`, `progress-bar`, `effort-badge`, `toast`. Icon component at `components/icon.blade.php`. (The RPG `stat-bar`, `rank-badge`, and `level-up-modal` components were removed.)
 
 ### Tailwind Design Tokens
-`tailwind.config.js` only sets the Inter font family now; the old `stat.*` / `rank.*` custom color palettes were removed. Primary brand color: indigo-600.
+`tailwind.config.js` only sets the Inter font family now; the old `stat.*` / `rank.*` custom color palettes were removed. Primary brand color: teal-600.
 
 ### Layouts
 - `layouts/app.blade.php` — authenticated shell with sidebar + topbar, wrapped in `x-data="{ sidebarOpen: false }"`

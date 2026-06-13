@@ -19,7 +19,7 @@
 
         /* Subtle gradient background */
         .hero-gradient {
-            background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(20, 184, 166, 0.08) 0%, transparent 70%);
         }
 
         /* Animated stat bars */
@@ -43,8 +43,8 @@
         }
 
         /* Glow effect for CTA */
-        .glow-indigo {
-            box-shadow: 0 0 24px -4px rgba(99, 102, 241, 0.35);
+        .glow-teal {
+            box-shadow: 0 0 24px -4px rgba(20, 184, 166, 0.35);
         }
 
         /* Subtle shimmer accent */
@@ -69,7 +69,7 @@
             <div class="flex items-center justify-between h-16">
                 {{-- Logo --}}
                 <a href="/" class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center">
+                    <div class="w-9 h-9 bg-teal-600 rounded-xl flex items-center justify-center">
                         <span class="text-white font-bold text-base">L</span>
                     </div>
                     <span class="text-xl font-semibold text-gray-900 tracking-tight">LifeOS</span>
@@ -85,14 +85,14 @@
                 {{-- Auth Buttons --}}
                 <div class="hidden md:flex items-center gap-3">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition shadow-sm">
+                        <a href="{{ route('dashboard') }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition shadow-sm">
                             Dashboard
                         </a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition px-3 py-2">
                             Sign in
                         </a>
-                        <a href="{{ route('register') }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition shadow-sm">
+                        <a href="{{ route('register') }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition shadow-sm">
                             Get Started
                         </a>
                     @endauth
@@ -116,10 +116,10 @@
                 <a href="#templates" class="block text-sm text-gray-600 hover:text-gray-900">Templates</a>
                 <div class="pt-3 border-t border-gray-100 flex gap-3">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="flex-1 text-center px-4 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="flex-1 text-center px-4 py-2.5 text-sm font-medium text-white bg-teal-600 rounded-lg">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="flex-1 text-center px-4 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg">Sign in</a>
-                        <a href="{{ route('register') }}" class="flex-1 text-center px-4 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg">Get Started</a>
+                        <a href="{{ route('register') }}" class="flex-1 text-center px-4 py-2.5 text-sm font-medium text-white bg-teal-600 rounded-lg">Get Started</a>
                     @endauth
                 </div>
             </div>
@@ -133,15 +133,15 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center">
                 {{-- Badge --}}
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 mb-8">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                    <span class="text-xs font-medium text-indigo-700">Your personal growth operating system</span>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 border border-teal-100 mb-8">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+                    <span class="text-xs font-medium text-teal-700">Your personal growth operating system</span>
                 </div>
 
                 {{-- Headline --}}
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1]">
                     Organize your life.
-                    <span class="block mt-2 bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">See real progress.</span>
+                    <span class="block mt-2 bg-gradient-to-r from-teal-600 to-violet-600 bg-clip-text text-transparent">See real progress.</span>
                 </h1>
 
                 {{-- Subheadline --}}
@@ -152,12 +152,12 @@
                 {{-- CTA --}}
                 <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-lg glow-indigo">
+                        <a href="{{ route('dashboard') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition shadow-lg glow-teal">
                             Go to Dashboard
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                         </a>
                     @else
-                        <a href="{{ route('register') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-lg glow-indigo">
+                        <a href="{{ route('register') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition shadow-lg glow-teal">
                             Get started free
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                         </a>
@@ -196,7 +196,7 @@
                                 </div>
                                 <p class="text-2xl font-bold text-gray-900">28</p>
                                 <div class="mt-2 w-full bg-gray-100 rounded-full h-1.5">
-                                    <div class="bg-indigo-600 h-1.5 rounded-full animate-stat-fill" style="width: 75%"></div>
+                                    <div class="bg-teal-600 h-1.5 rounded-full animate-stat-fill" style="width: 75%"></div>
                                 </div>
                                 <p class="mt-1 text-xs text-gray-400">tasks completed</p>
                             </div>
@@ -220,7 +220,7 @@
                                 </div>
                                 <p class="text-2xl font-bold text-gray-900">4</p>
                                 <div class="mt-3 flex gap-1">
-                                    <div class="flex-1 h-1 rounded-full bg-indigo-500"></div>
+                                    <div class="flex-1 h-1 rounded-full bg-teal-500"></div>
                                     <div class="flex-1 h-1 rounded-full bg-emerald-500"></div>
                                     <div class="flex-1 h-1 rounded-full bg-amber-500"></div>
                                     <div class="flex-1 h-1 rounded-full bg-rose-400"></div>
@@ -236,7 +236,7 @@
                                 <p class="text-2xl font-bold text-gray-900">12 <span class="text-base font-normal text-gray-400">days</span></p>
                                 <div class="mt-2 flex gap-0.5">
                                     @for ($i = 0; $i < 7; $i++)
-                                        <div class="flex-1 h-5 rounded-sm {{ $i < 5 ? 'bg-indigo-500' : 'bg-gray-100' }}"></div>
+                                        <div class="flex-1 h-5 rounded-sm {{ $i < 5 ? 'bg-teal-500' : 'bg-gray-100' }}"></div>
                                     @endfor
                                 </div>
                                 <p class="mt-1 text-xs text-gray-400">Best: 21 days</p>
@@ -246,7 +246,7 @@
                 </div>
 
                 {{-- Decorative gradient behind --}}
-                <div class="absolute -inset-4 -z-10 bg-gradient-to-b from-indigo-50/50 to-transparent rounded-3xl blur-xl"></div>
+                <div class="absolute -inset-4 -z-10 bg-gradient-to-b from-teal-50/50 to-transparent rounded-3xl blur-xl"></div>
             </div>
         </div>
     </section>
@@ -263,9 +263,9 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                 {{-- Feature 1: Life Areas --}}
-                <div class="group p-6 rounded-2xl border border-gray-200 hover:border-indigo-200 hover:shadow-lg hover:shadow-indigo-50 transition-all duration-300">
-                    <div class="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center mb-5">
-                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="group p-6 rounded-2xl border border-gray-200 hover:border-teal-200 hover:shadow-lg hover:shadow-teal-50 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
+                        <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
                         </svg>
                     </div>
@@ -300,8 +300,8 @@
             <div class="mt-16 p-6 sm:p-8 bg-gray-50 rounded-2xl border border-gray-200">
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"/></svg>
+                        <div class="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"/></svg>
                         </div>
                         <span class="text-sm font-medium text-gray-900">Life Areas</span>
                     </div>
@@ -342,8 +342,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 {{-- Left: Content --}}
                 <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 mb-6">
-                        <span class="text-xs font-medium text-indigo-700">Insights</span>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 border border-teal-100 mb-6">
+                        <span class="text-xs font-medium text-teal-700">Insights</span>
                     </div>
                     <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Know exactly where<br>your time goes</h2>
                     <p class="mt-5 text-lg text-gray-500 leading-relaxed">Every completed task rolls up into clear analytics — completion trends, life-area balance, and consistency — so you can see what's working and adjust.</p>
@@ -351,8 +351,8 @@
                     <div class="mt-8 space-y-5">
                         {{-- Completion trends --}}
                         <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg>
+                            <div class="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg>
                             </div>
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-900">Completion trends</h3>
@@ -396,7 +396,7 @@
                     <div class="space-y-4">
                         @php
                             $demoAreas = [
-                                ['name' => 'Work', 'count' => 42, 'width' => 92, 'color' => 'bg-indigo-500'],
+                                ['name' => 'Work', 'count' => 42, 'width' => 92, 'color' => 'bg-teal-500'],
                                 ['name' => 'Health', 'count' => 31, 'width' => 68, 'color' => 'bg-emerald-500'],
                                 ['name' => 'Learning', 'count' => 24, 'width' => 53, 'color' => 'bg-blue-500'],
                                 ['name' => 'Finance', 'count' => 12, 'width' => 26, 'color' => 'bg-amber-500'],
@@ -418,7 +418,7 @@
                     {{-- Milestones row --}}
                     <div class="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between">
                         <span class="text-sm text-gray-500">Milestones reached</span>
-                        <span class="text-sm font-semibold text-indigo-600">6 / 8</span>
+                        <span class="text-sm font-semibold text-teal-600">6 / 8</span>
                     </div>
                 </div>
             </div>
@@ -494,8 +494,8 @@
                 <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8 order-2 lg:order-1">
                     {{-- Daily Review Mock --}}
                     <div class="flex items-center gap-3 mb-5">
-                        <div class="w-9 h-9 rounded-lg bg-indigo-100 flex items-center justify-center">
-                            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        <div class="w-9 h-9 rounded-lg bg-teal-100 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                         </div>
                         <div>
                             <h3 class="text-sm font-semibold text-gray-900">Daily Review</h3>
@@ -523,7 +523,7 @@
 
                     <div class="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between">
                         <span class="text-xs text-gray-400">Completed today</span>
-                        <span class="text-sm font-semibold text-indigo-600">2 of 3</span>
+                        <span class="text-sm font-semibold text-teal-600">2 of 3</span>
                     </div>
                 </div>
 
@@ -534,15 +534,15 @@
 
                     <div class="mt-8 space-y-4">
                         <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-indigo-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <svg class="w-5 h-5 text-teal-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                             <span class="text-sm text-gray-600">Daily reviews to check off completed tasks</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-indigo-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <svg class="w-5 h-5 text-teal-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                             <span class="text-sm text-gray-600">Weekly reviews to reflect on progress and plan ahead</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-indigo-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <svg class="w-5 h-5 text-teal-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                             <span class="text-sm text-gray-600">No guilt — missed days don't penalize you</span>
                         </div>
                     </div>
@@ -560,12 +560,12 @@
             <p class="mt-4 text-lg text-gray-500">Bring your goals, projects, and tasks into one place — and finally see them through.</p>
             <div class="mt-10">
                 @auth
-                    <a href="{{ route('dashboard') }}" class="inline-flex items-center px-8 py-3.5 text-base font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-lg glow-indigo">
+                    <a href="{{ route('dashboard') }}" class="inline-flex items-center px-8 py-3.5 text-base font-semibold text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition shadow-lg glow-teal">
                         Go to Dashboard
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                     </a>
                 @else
-                    <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-3.5 text-base font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-lg glow-indigo">
+                    <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-3.5 text-base font-semibold text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition shadow-lg glow-teal">
                         Get started — it's free
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                     </a>
@@ -582,7 +582,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center">
+                    <div class="w-7 h-7 bg-teal-600 rounded-lg flex items-center justify-center">
                         <span class="text-white font-bold text-xs">L</span>
                     </div>
                     <span class="text-sm font-semibold text-gray-900">LifeOS</span>

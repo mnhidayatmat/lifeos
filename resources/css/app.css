@@ -50,8 +50,8 @@
     .dark [multiple]:focus,
     .dark textarea:focus,
     .dark select:focus {
-        border-color: theme('colors.indigo.500');
-        --tw-ring-color: theme('colors.indigo.500');
+        border-color: theme('colors.teal.500');
+        --tw-ring-color: theme('colors.teal.500');
     }
 
     .dark [type='checkbox'],
@@ -62,8 +62,8 @@
 
     .dark [type='checkbox']:checked,
     .dark [type='radio']:checked {
-        background-color: theme('colors.indigo.500');
-        border-color: theme('colors.indigo.500');
+        background-color: theme('colors.teal.500');
+        border-color: theme('colors.teal.500');
     }
 
     /* Dark mode form labels */

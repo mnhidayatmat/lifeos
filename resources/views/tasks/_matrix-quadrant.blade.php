@@ -8,7 +8,7 @@
                 <form method="POST" action="{{ route('tasks.complete', $task) }}">
                     @csrf
                     @method('PATCH')
-                    <button type="submit" class="w-4 h-4 rounded border-2 border-gray-300 dark:border-gray-600 hover:border-indigo-400 flex items-center justify-center transition-colors shrink-0"></button>
+                    <button type="submit" class="w-4 h-4 rounded border-2 border-gray-300 dark:border-gray-600 hover:border-teal-400 flex items-center justify-center transition-colors shrink-0"></button>
                 </form>
 
                 {{-- Task info --}}

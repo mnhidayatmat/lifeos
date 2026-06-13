@@ -3,7 +3,6 @@
 @php
 $colors = [
     'gray'    => 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
-    'indigo'  => 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-400',
     'emerald' => 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400',
     'amber'   => 'bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-400',
     'rose'    => 'bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-400',

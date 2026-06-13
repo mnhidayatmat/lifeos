@@ -9,7 +9,7 @@
                 {{ $habits->count() }} {{ Str::plural('habit', $habits->count()) }} tracked
             </p>
             <button @click="$dispatch('open-modal-create-habit')"
-                    class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+                    class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
                 <x-icon name="plus" class="w-4 h-4" />
                 Add Habit
             </button>
@@ -84,8 +84,8 @@
                                                 <button type="submit"
                                                         class="w-5 h-5 rounded border-2 flex items-center justify-center transition-colors
                                                             {{ $completed
-                                                                ? 'bg-indigo-500 border-indigo-500 dark:bg-indigo-600 dark:border-indigo-600'
-                                                                : 'border-gray-300 dark:border-gray-600 hover:border-indigo-400 dark:hover:border-indigo-500' }}"
+                                                                ? 'bg-teal-500 border-teal-500 dark:bg-teal-600 dark:border-teal-600'
+                                                                : 'border-gray-300 dark:border-gray-600 hover:border-teal-400 dark:hover:border-teal-500' }}"
                                                         aria-label="{{ $completed ? 'Mark as incomplete' : 'Mark as complete' }}: {{ $habit->title }}">
                                                     @if($completed)
                                                         <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,7 +150,7 @@
                 <div>
                     <label for="habit-title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title</label>
                     <input type="text" name="title" id="habit-title" required
-                           class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                           class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-teal-500 focus:ring-teal-500"
                            placeholder="e.g. Meditate for 10 minutes">
                 </div>
 
@@ -158,7 +158,7 @@
                 <div>
                     <label for="habit-routine" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Routine</label>
                     <select name="routine" id="habit-routine" required
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-teal-500 focus:ring-teal-500">
                         <option value="morning">Morning</option>
                         <option value="afternoon">Afternoon</option>
                         <option value="evening">Evening</option>
@@ -169,7 +169,7 @@
                 <div>
                     <label for="habit-frequency" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Frequency</label>
                     <select name="frequency" id="habit-frequency" required
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-teal-500 focus:ring-teal-500">
                         <option value="daily">Daily</option>
                         <option value="weekdays">Weekdays</option>
                         <option value="weekends">Weekends</option>
@@ -206,7 +206,7 @@
                 <div>
                     <label for="habit-area" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Life Area</label>
                     <select name="life_area_id" id="habit-area"
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-teal-500 focus:ring-teal-500">
                         <option value="">None</option>
                         @foreach($areas as $area)
                             <option value="{{ $area->id }}">{{ $area->name }}</option>
@@ -233,7 +233,7 @@
                     Cancel
                 </button>
                 <button type="submit"
-                        class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+                        class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
                     Create Habit
                 </button>
             </div>

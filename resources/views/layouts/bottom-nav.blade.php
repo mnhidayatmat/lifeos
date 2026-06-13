@@ -15,7 +15,7 @@
         @foreach($tabs as $tab)
             @php $isActive = request()->routeIs($tab['active']); @endphp
             <a href="{{ route($tab['route']) }}" aria-label="{{ $tab['label'] }}"
-               class="flex flex-col items-center justify-center gap-0.5 h-16 transition-colors {{ $isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-400 dark:text-gray-500 active:text-gray-600 dark:active:text-gray-300' }}">
+               class="flex flex-col items-center justify-center gap-0.5 h-16 transition-colors {{ $isActive ? 'text-teal-600 dark:text-teal-400' : 'text-gray-400 dark:text-gray-500 active:text-gray-600 dark:active:text-gray-300' }}">
                 <x-icon :name="$tab['icon']" class="w-6 h-6" />
                 <span class="text-[10px] font-medium leading-none">{{ $tab['label'] }}</span>
             </a>

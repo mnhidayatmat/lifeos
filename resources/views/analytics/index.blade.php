@@ -53,7 +53,7 @@
                                 {{ $day['count'] > 0 ? $day['count'] : '' }}
                             </span>
                             <div
-                                class="w-full rounded-t bg-indigo-500 dark:bg-indigo-400 transition-all"
+                                class="w-full rounded-t bg-teal-500 dark:bg-teal-400 transition-all"
                                 style="height: {{ max($heightPercent, 2) }}%; min-height: 2px;"
                             ></div>
                         </div>

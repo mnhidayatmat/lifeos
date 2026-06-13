@@ -22,7 +22,7 @@
         ];
 
         $features = [
-            ['label' => 'Life Areas', 'icon' => 'grid',      'route' => route('life-areas.index'), 'tint' => 'text-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 dark:text-indigo-400'],
+            ['label' => 'Life Areas', 'icon' => 'grid',      'route' => route('life-areas.index'), 'tint' => 'text-teal-600 bg-teal-50 dark:bg-teal-950/60 dark:text-teal-400'],
             ['label' => 'Vision',     'icon' => 'eye',       'route' => route('vision.index'),     'tint' => 'text-violet-600 bg-violet-50 dark:bg-violet-950/60 dark:text-violet-400'],
             ['label' => 'Analytics',  'icon' => 'chart',     'route' => route('analytics.index'),  'tint' => 'text-blue-600 bg-blue-50 dark:bg-blue-950/60 dark:text-blue-400'],
             ['label' => 'Milestones', 'icon' => 'trophy',    'route' => route('milestones.index'), 'tint' => 'text-amber-600 bg-amber-50 dark:bg-amber-950/60 dark:text-amber-400'],
@@ -36,7 +36,7 @@
     <div class="lg:hidden -mx-4 -mt-4 sm:-mx-6 sm:-mt-6">
 
         {{-- Hero: greeting, actions, quick-add, quick chips --}}
-        <section class="relative bg-gradient-to-br from-indigo-600 via-indigo-500 to-violet-500 text-white px-5 pb-12"
+        <section class="relative bg-gradient-to-br from-teal-600 via-teal-500 to-violet-500 text-white px-5 pb-12"
                  style="padding-top: calc(env(safe-area-inset-top) + 1.25rem);">
 
             {{-- Top row --}}
@@ -50,7 +50,7 @@
                        class="relative w-9 h-9 rounded-full bg-white/15 backdrop-blur flex items-center justify-center active:bg-white/25 transition">
                         <x-icon name="bell" class="w-5 h-5 text-white" />
                         @if($unread > 0)
-                            <span class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 text-[10px] font-bold text-indigo-700 bg-white rounded-full flex items-center justify-center">{{ min($unread, 9) }}</span>
+                            <span class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 text-[10px] font-bold text-teal-700 bg-white rounded-full flex items-center justify-center">{{ min($unread, 9) }}</span>
                         @endif
                     </a>
                     <a href="{{ route('profile.edit') }}" aria-label="Profile"
@@ -65,8 +65,8 @@
                 @csrf
                 <input type="hidden" name="due_date" value="{{ today()->format('Y-m-d') }}">
                 <input type="hidden" name="effort" value="medium">
-                <label class="flex items-center gap-2.5 bg-white rounded-2xl px-4 h-12 shadow-sm shadow-indigo-900/10">
-                    <x-icon name="plus" class="w-5 h-5 text-indigo-500 shrink-0" />
+                <label class="flex items-center gap-2.5 bg-white rounded-2xl px-4 h-12 shadow-sm shadow-teal-900/10">
+                    <x-icon name="plus" class="w-5 h-5 text-teal-500 shrink-0" />
                     <input type="text" name="title" placeholder="Quick add a task for today…" required
                            class="flex-1 min-w-0 border-0 bg-transparent text-sm text-gray-900 placeholder-gray-400 focus:ring-0 p-0">
                 </label>
@@ -113,8 +113,8 @@
                 <a href="{{ route('reviews.daily') }}"
                    class="block rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4 active:bg-gray-50 dark:active:bg-gray-800/50 transition">
                     <div class="flex items-center gap-3">
-                        <span class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 flex items-center justify-center shrink-0">
-                            <x-icon name="book-open" class="w-5 h-5 text-indigo-500" />
+                        <span class="w-9 h-9 rounded-xl bg-teal-50 dark:bg-teal-950/60 flex items-center justify-center shrink-0">
+                            <x-icon name="book-open" class="w-5 h-5 text-teal-500" />
                         </span>
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-semibold text-gray-900 dark:text-white">Reflect on your day</p>
@@ -128,8 +128,8 @@
             {{-- Two stat cards --}}
             <div class="grid grid-cols-2 gap-3">
                 <a href="{{ route('tasks.index') }}" class="rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4 active:bg-gray-50 dark:active:bg-gray-800/50 transition">
-                    <span class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 flex items-center justify-center">
-                        <x-icon name="check-square" class="w-5 h-5 text-indigo-500" />
+                    <span class="w-8 h-8 rounded-lg bg-teal-50 dark:bg-teal-950/60 flex items-center justify-center">
+                        <x-icon name="check-square" class="w-5 h-5 text-teal-500" />
                     </span>
                     <p class="text-2xl font-bold text-gray-900 dark:text-white tabular-nums mt-3">{{ $dueTodayCount }}</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{{ $dueTodayCount === 1 ? 'task' : 'tasks' }} due today</p>
@@ -164,7 +164,7 @@
                         </a>
                     @endforeach
                 </div>
-                <a href="{{ route('tasks.index') }}" class="flex items-center justify-center gap-1.5 py-3 border-t border-gray-100 dark:border-gray-800 text-sm font-medium text-indigo-600 dark:text-indigo-400 active:bg-gray-50 dark:active:bg-gray-800/50 transition">
+                <a href="{{ route('tasks.index') }}" class="flex items-center justify-center gap-1.5 py-3 border-t border-gray-100 dark:border-gray-800 text-sm font-medium text-teal-600 dark:text-teal-400 active:bg-gray-50 dark:active:bg-gray-800/50 transition">
                     View all tasks
                     <x-icon name="arrow-right" class="w-4 h-4" />
                 </a>
@@ -191,7 +191,7 @@
                                 <form method="POST" action="{{ route('tasks.complete', $task) }}">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" aria-label="Complete task" class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-gray-600 hover:border-indigo-400 transition-colors"></button>
+                                    <button type="submit" aria-label="Complete task" class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-gray-600 hover:border-teal-400 transition-colors"></button>
                                 </form>
                                 <a href="{{ route('tasks.show', $task) }}" class="flex-1 min-w-0">
                                     <span class="text-sm text-gray-900 dark:text-gray-100 truncate block">{{ $task->title }}</span>
@@ -208,7 +208,7 @@
                 <div class="rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4">
                     <div class="flex items-center justify-between mb-3">
                         <h2 class="text-sm font-semibold text-gray-900 dark:text-white">Habits</h2>
-                        <a href="{{ route('habits.index') }}" class="text-xs text-indigo-600 dark:text-indigo-400">View all</a>
+                        <a href="{{ route('habits.index') }}" class="text-xs text-teal-600 dark:text-teal-400">View all</a>
                     </div>
                     <div class="space-y-0.5">
                         @foreach($todayHabits as $habit)
@@ -234,10 +234,10 @@
             <div class="rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4">
                 <div class="flex items-center justify-between mb-3">
                     <h2 class="text-sm font-semibold text-gray-900 dark:text-white">Active goals</h2>
-                    <a href="{{ route('goals.index') }}" class="text-xs text-indigo-600 dark:text-indigo-400">View all</a>
+                    <a href="{{ route('goals.index') }}" class="text-xs text-teal-600 dark:text-teal-400">View all</a>
                 </div>
                 @if($activeGoals->isEmpty())
-                    <a href="{{ route('goals.create') }}" class="flex items-center justify-center gap-1.5 py-4 text-sm font-medium text-indigo-600 dark:text-indigo-400">
+                    <a href="{{ route('goals.create') }}" class="flex items-center justify-center gap-1.5 py-4 text-sm font-medium text-teal-600 dark:text-teal-400">
                         <x-icon name="plus" class="w-4 h-4" /> Create your first goal
                     </a>
                 @else
@@ -249,7 +249,7 @@
                                     <span class="text-sm font-medium text-gray-900 dark:text-gray-100 flex-1 truncate">{{ $goal->title }}</span>
                                     <span class="text-xs font-bold text-gray-600 dark:text-gray-300 tabular-nums">{{ $goal->progress }}%</span>
                                 </div>
-                                <x-ui.progress-bar :value="$goal->progress" color="indigo" size="xs" />
+                                <x-ui.progress-bar :value="$goal->progress" color="teal" size="xs" />
                             </a>
                         @endforeach
                     </div>
@@ -273,7 +273,7 @@
 
             {{-- Weekly momentum (the "promo" card) --}}
             <a href="{{ route('reviews.weekly') }}"
-               class="block rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-500 text-white p-5 active:opacity-95 transition">
+               class="block rounded-2xl bg-gradient-to-br from-teal-600 to-violet-500 text-white p-5 active:opacity-95 transition">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs font-medium text-white/70">This week</p>
@@ -305,7 +305,7 @@
                         <svg class="w-5 h-5 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
                         <div class="flex-1 min-w-0">
                             <p class="text-xs font-medium text-amber-600 dark:text-amber-400 uppercase tracking-wider">Your #1 Domino Goal</p>
-                            <a href="{{ route('goals.show', $dominoGoal) }}" class="text-sm font-semibold text-gray-900 dark:text-white hover:text-indigo-600">{{ $dominoGoal->title }}</a>
+                            <a href="{{ route('goals.show', $dominoGoal) }}" class="text-sm font-semibold text-gray-900 dark:text-white hover:text-teal-600">{{ $dominoGoal->title }}</a>
                         </div>
                         <span class="text-sm font-bold text-gray-900 dark:text-white">{{ $dominoGoal->progress }}%</span>
                     </div>
@@ -343,7 +343,7 @@
                                 <form method="POST" action="{{ route('tasks.complete', $task) }}">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="w-5 h-5 rounded border-2 border-gray-300 hover:border-indigo-400 flex items-center justify-center transition-colors"></button>
+                                    <button type="submit" class="w-5 h-5 rounded border-2 border-gray-300 hover:border-teal-400 flex items-center justify-center transition-colors"></button>
                                 </form>
                                 <a href="{{ route('tasks.show', $task) }}" class="flex-1 min-w-0">
                                     <span class="text-sm text-gray-900">{{ $task->title }}</span>
@@ -360,8 +360,8 @@
                     <input type="hidden" name="due_date" value="{{ today()->format('Y-m-d') }}">
                     <input type="hidden" name="effort" value="medium">
                     <input type="text" name="title" placeholder="Quick add task for today..."
-                           class="flex-1 rounded-lg border-gray-200 bg-gray-50 text-sm focus:border-indigo-500 focus:ring-indigo-500 focus:bg-white" required>
-                    <button type="submit" class="px-3 py-2 text-xs font-medium text-indigo-600 bg-indigo-50 rounded-lg hover:bg-indigo-100">Add</button>
+                           class="flex-1 rounded-lg border-gray-200 bg-gray-50 text-sm focus:border-teal-500 focus:ring-teal-500 focus:bg-white" required>
+                    <button type="submit" class="px-3 py-2 text-xs font-medium text-teal-600 bg-teal-50 rounded-lg hover:bg-teal-100">Add</button>
                 </form>
             </x-ui.card>
 
@@ -401,7 +401,7 @@
                 <x-ui.card>
                     <div class="flex items-center justify-between mb-3">
                         <h2 class="text-base font-semibold text-gray-900 dark:text-white">Habits</h2>
-                        <a href="{{ route('habits.index') }}" class="text-xs text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">View all</a>
+                        <a href="{{ route('habits.index') }}" class="text-xs text-teal-600 hover:text-teal-700 dark:text-teal-400">View all</a>
                     </div>
                     <div class="space-y-1">
                         @foreach($todayHabits as $habit)
@@ -427,7 +427,7 @@
             <x-ui.card>
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-base font-semibold text-gray-900 dark:text-white">Active Goals</h2>
-                    <a href="{{ route('goals.index') }}" class="text-xs text-indigo-600 hover:text-indigo-700">View all</a>
+                    <a href="{{ route('goals.index') }}" class="text-xs text-teal-600 hover:text-teal-700">View all</a>
                 </div>
                 @if($activeGoals->isEmpty())
                     <x-ui.empty-state
@@ -446,7 +446,7 @@
                                     <span class="text-sm font-medium text-gray-900 flex-1">{{ $goal->title }}</span>
                                     <span class="text-xs font-bold text-gray-700">{{ $goal->progress }}%</span>
                                 </div>
-                                <x-ui.progress-bar :value="$goal->progress" color="indigo" size="xs" />
+                                <x-ui.progress-bar :value="$goal->progress" color="teal" size="xs" />
                             </a>
                         @endforeach
                     </div>
@@ -483,7 +483,7 @@
             <x-ui.card>
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Life areas</h3>
-                    <a href="{{ route('analytics.index') }}" class="text-xs text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">Analytics</a>
+                    <a href="{{ route('analytics.index') }}" class="text-xs text-teal-600 hover:text-teal-700 dark:text-teal-400">Analytics</a>
                 </div>
                 @if($lifeAreaProgress->isEmpty())
                     <p class="text-sm text-gray-400">No active life areas.</p>

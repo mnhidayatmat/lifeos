@@ -10,7 +10,7 @@
                     <form method="POST" action="{{ $task->isCompleted() ? route('tasks.reopen', $task) : route('tasks.complete', $task) }}">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="w-6 h-6 rounded border-2 {{ $task->isCompleted() ? 'bg-indigo-500 border-indigo-500' : 'border-gray-300 hover:border-indigo-400' }} flex items-center justify-center transition-colors">
+                        <button type="submit" class="w-6 h-6 rounded border-2 {{ $task->isCompleted() ? 'bg-teal-500 border-teal-500' : 'border-gray-300 hover:border-teal-400' }} flex items-center justify-center transition-colors">
                             @if($task->isCompleted())
                                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
@@ -33,10 +33,10 @@
             {{-- Meta --}}
             <div class="flex items-center gap-4 text-xs text-gray-500 mb-4 pb-4 border-b border-gray-100">
                 @if($task->project)
-                    <a href="{{ route('projects.show', $task->project) }}" class="hover:text-indigo-600">{{ $task->project->title }}</a>
+                    <a href="{{ route('projects.show', $task->project) }}" class="hover:text-teal-600">{{ $task->project->title }}</a>
                 @endif
                 @if($task->goal)
-                    <a href="{{ route('goals.show', $task->goal) }}" class="hover:text-indigo-600">{{ $task->goal->title }}</a>
+                    <a href="{{ route('goals.show', $task->goal) }}" class="hover:text-teal-600">{{ $task->goal->title }}</a>
                 @endif
                 @if($task->due_date)
                     <span class="{{ $task->isOverdue() ? 'text-rose-500' : '' }}">Due {{ $task->due_date->format('M j, Y') }}</span>
@@ -49,7 +49,7 @@
                     </span>
                 @endif
                 @if($task->is_recurring)
-                    <span class="text-indigo-500">Recurring: {{ $task->recurrence_rule }}</span>
+                    <span class="text-teal-500">Recurring: {{ $task->recurrence_rule }}</span>
                 @endif
             </div>
 
@@ -63,7 +63,7 @@
                                 <form method="POST" action="{{ route('subtasks.toggle', $subtask) }}">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="w-4 h-4 rounded border {{ $subtask->is_completed ? 'bg-indigo-500 border-indigo-500' : 'border-gray-300' }} flex items-center justify-center">
+                                    <button type="submit" class="w-4 h-4 rounded border {{ $subtask->is_completed ? 'bg-teal-500 border-teal-500' : 'border-gray-300' }} flex items-center justify-center">
                                         @if($subtask->is_completed)
                                             <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
@@ -87,8 +87,8 @@
                 <form method="POST" action="{{ route('subtasks.store', $task) }}" class="flex items-center gap-2">
                     @csrf
                     <input type="text" name="title" placeholder="Add subtask..."
-                           class="flex-1 rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500">
-                    <button type="submit" class="px-3 py-2 text-xs font-medium text-indigo-600 bg-indigo-50 rounded-lg hover:bg-indigo-100">Add</button>
+                           class="flex-1 rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500">
+                    <button type="submit" class="px-3 py-2 text-xs font-medium text-teal-600 bg-teal-50 rounded-lg hover:bg-teal-100">Add</button>
                 </form>
             </div>
 
@@ -103,7 +103,7 @@
                     @if($task->isCompleted())
                         <span class="text-xs text-gray-400">Completed {{ $task->completed_at->format('M j, Y g:ia') }}</span>
                     @endif
-                    <a href="{{ route('tasks.edit', $task) }}" class="text-xs font-medium text-indigo-600 hover:text-indigo-700">Edit</a>
+                    <a href="{{ route('tasks.edit', $task) }}" class="text-xs font-medium text-teal-600 hover:text-teal-700">Edit</a>
                 </div>
             </div>
         </x-ui.card>

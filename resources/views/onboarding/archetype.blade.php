@@ -24,7 +24,7 @@
                     <label class="block">
                         <input type="radio" name="archetype" value="{{ $key }}" class="peer sr-only" @checked($loop->first)>
                         <div class="p-4 rounded-xl border-2 border-gray-200 cursor-pointer
-                                    peer-checked:border-indigo-500 peer-checked:bg-indigo-50
+                                    peer-checked:border-teal-500 peer-checked:bg-teal-50
                                     hover:border-gray-300 transition-colors">
                             <h3 class="text-sm font-semibold text-gray-900">{{ $archetype['label'] }}</h3>
                             <p class="text-xs text-gray-500 mt-0.5">{{ $archetype['desc'] }}</p>
@@ -33,7 +33,7 @@
                 @endforeach
             </div>
 
-            <button type="submit" class="w-full mt-6 px-4 py-3 text-sm font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-colors">
+            <button type="submit" class="w-full mt-6 px-4 py-3 text-sm font-medium text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition-colors">
                 Continue
             </button>
         </form>

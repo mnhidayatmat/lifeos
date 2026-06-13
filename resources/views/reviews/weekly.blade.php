@@ -58,30 +58,30 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">What went well this week?</label>
-                            <textarea name="went_well" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            <textarea name="went_well" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500"
                                       placeholder="Wins, breakthroughs, progress..."></textarea>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">What got stuck?</label>
-                            <textarea name="got_stuck" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            <textarea name="got_stuck" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500"
                                       placeholder="Blockers, missed goals, challenges..."></textarea>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">What should you focus on next week?</label>
-                            <textarea name="focus_next_week" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            <textarea name="focus_next_week" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500"
                                       placeholder="Top priorities for the coming week..."></textarea>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Notes <span class="text-gray-400">(optional)</span></label>
-                            <textarea name="notes" rows="2" class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                            <textarea name="notes" rows="2" class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500"></textarea>
                         </div>
                     </div>
 
                     <div class="flex justify-end mt-6 pt-4 border-t border-gray-100">
-                        <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
+                        <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700">
                             Complete Review
                         </button>
                     </div>

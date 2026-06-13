@@ -7,7 +7,7 @@
         <div class="flex items-center gap-2 mb-6">
             <a href="{{ route('reviews.daily') }}" class="px-3 py-1.5 text-sm rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800">Daily</a>
             <a href="{{ route('reviews.weekly') }}" class="px-3 py-1.5 text-sm rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800">Weekly</a>
-            <a href="{{ route('reviews.monthly') }}" class="px-3 py-1.5 text-sm rounded-lg bg-indigo-50 text-indigo-700 font-medium dark:bg-indigo-950 dark:text-indigo-400">Monthly</a>
+            <a href="{{ route('reviews.monthly') }}" class="px-3 py-1.5 text-sm rounded-lg bg-teal-50 text-teal-700 font-medium dark:bg-teal-950 dark:text-teal-400">Monthly</a>
             <a href="{{ route('reviews.history') }}" class="px-3 py-1.5 text-sm rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800">History</a>
         </div>
 
@@ -34,9 +34,9 @@
             </div>
 
             @if($autoData['best_week'])
-                <div class="p-3 bg-indigo-50 dark:bg-indigo-950/30 rounded-lg">
-                    <p class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">Most productive week</p>
-                    <p class="text-sm font-semibold text-indigo-800 dark:text-indigo-300">{{ $autoData['best_week'] }} — {{ $autoData['best_week_count'] }} {{ \Illuminate\Support\Str::plural('task', $autoData['best_week_count']) }} completed</p>
+                <div class="p-3 bg-teal-50 dark:bg-teal-950/30 rounded-lg">
+                    <p class="text-xs text-teal-600 dark:text-teal-400 font-medium">Most productive week</p>
+                    <p class="text-sm font-semibold text-teal-800 dark:text-teal-300">{{ $autoData['best_week'] }} — {{ $autoData['best_week_count'] }} {{ \Illuminate\Support\Str::plural('task', $autoData['best_week_count']) }} completed</p>
                 </div>
             @endif
         </x-ui.card>
@@ -62,24 +62,24 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">What was your biggest win this month?</label>
-                            <textarea name="biggest_win" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Your proudest accomplishment..."></textarea>
+                            <textarea name="biggest_win" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500" placeholder="Your proudest accomplishment..."></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">What was the biggest lesson learned?</label>
-                            <textarea name="biggest_lesson" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="What would you do differently?"></textarea>
+                            <textarea name="biggest_lesson" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500" placeholder="What would you do differently?"></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">What should you focus on next month?</label>
-                            <textarea name="focus_next_month" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Top priorities for the coming month..."></textarea>
+                            <textarea name="focus_next_month" rows="3" class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500" placeholder="Top priorities for the coming month..."></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Notes <span class="text-gray-400">(optional)</span></label>
-                            <textarea name="notes" rows="2" class="w-full rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                            <textarea name="notes" rows="2" class="w-full rounded-lg border-gray-300 text-sm focus:border-teal-500 focus:ring-teal-500"></textarea>
                         </div>
                     </div>
 
                     <div class="flex justify-end mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
-                        <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
+                        <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700">
                             Complete Review
                         </button>
                     </div>

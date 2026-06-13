@@ -13,7 +13,7 @@
         ];
         $buckets = [
             'overdue'    => ['label' => 'Overdue',     'tone' => 'rose'],
-            'today'      => ['label' => 'Today',       'tone' => 'indigo'],
+            'today'      => ['label' => 'Today',       'tone' => 'teal'],
             'this_week'  => ['label' => 'This week',   'tone' => 'amber'],
             'this_month' => ['label' => 'This month',  'tone' => 'blue'],
             'later'      => ['label' => 'Later',       'tone' => 'gray'],
@@ -21,7 +21,7 @@
         ];
         $toneClasses = [
             'rose'    => 'bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-400',
-            'indigo'  => 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-400',
+            'teal'    => 'bg-teal-50 text-teal-700 dark:bg-teal-950 dark:text-teal-400',
             'amber'   => 'bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-400',
             'blue'    => 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-400',
             'gray'    => 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400',
@@ -48,7 +48,7 @@
                     Sync calendar
                 </button>
                 <button @click="openCreate()"
-                        class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+                        class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
                     <x-icon name="plus" class="w-4 h-4" />
                     Add date
                 </button>
@@ -64,7 +64,7 @@
                     <h3 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">No important dates yet</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm">Track deadlines that matter — renewals, submissions, exams, anniversaries — and get reminded before they arrive.</p>
                     <button @click="openCreate()"
-                            class="mt-4 inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors">
+                            class="mt-4 inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950 rounded-lg hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors">
                         <x-icon name="plus" class="w-4 h-4" />
                         Add date
                     </button>
@@ -160,7 +160,7 @@
                                                         "life_area_id" => $item->life_area_id,
                                                         "reminders" => $item->reminderOffsets()->values(),
                                                     ]))'
-                                                    class="text-gray-300 dark:text-gray-600 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
+                                                    class="text-gray-300 dark:text-gray-600 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
                                                     aria-label="Edit {{ $item->title }}">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125"/>
@@ -202,7 +202,7 @@
                     <div>
                         <label for="date-title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title</label>
                         <input type="text" name="title" id="date-title" required x-model="form.title"
-                               class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                               class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-teal-500 focus:ring-teal-500"
                                placeholder="e.g. Passport renewal deadline">
                     </div>
 
@@ -211,14 +211,14 @@
                         <div>
                             <label for="date-date" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Date</label>
                             <input type="date" name="date" id="date-date" required x-model="form.date"
-                                   class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
+                                   class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-teal-500 focus:ring-teal-500">
                         </div>
                         <div>
                             <label for="date-time" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Time <span class="text-gray-400 font-normal">(optional)</span>
                             </label>
                             <input type="time" name="time" id="date-time" x-model="form.time"
-                                   class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
+                                   class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-teal-500 focus:ring-teal-500">
                         </div>
                     </div>
 
@@ -232,8 +232,8 @@
                                            x-model="form.reminders">
                                     <span class="inline-flex items-center px-2.5 py-1 rounded-lg border text-xs font-medium transition-colors
                                                  border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400
-                                                 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-700
-                                                 dark:peer-checked:bg-indigo-950 dark:peer-checked:text-indigo-300 dark:peer-checked:border-indigo-600">
+                                                 peer-checked:border-teal-500 peer-checked:bg-teal-50 peer-checked:text-teal-700
+                                                 dark:peer-checked:bg-teal-950 dark:peer-checked:text-teal-300 dark:peer-checked:border-teal-600">
                                         {{ $label }}
                                     </span>
                                 </label>
@@ -247,7 +247,7 @@
                         <div>
                             <label for="date-recurrence" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Repeat</label>
                             <select name="recurrence" id="date-recurrence" x-model="form.recurrence"
-                                    class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
+                                    class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-teal-500 focus:ring-teal-500">
                                 <option value="">Never</option>
                                 <option value="monthly">Monthly</option>
                                 <option value="yearly">Yearly</option>
@@ -256,7 +256,7 @@
                         <div>
                             <label for="date-area" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Life Area</label>
                             <select name="life_area_id" id="date-area" x-model="form.life_area_id"
-                                    class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
+                                    class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-teal-500 focus:ring-teal-500">
                                 <option value="">None</option>
                                 @foreach($areas as $area)
                                     <option value="{{ $area->id }}">{{ $area->name }}</option>
@@ -271,7 +271,7 @@
                             Notes <span class="text-gray-400 font-normal">(optional)</span>
                         </label>
                         <textarea name="description" id="date-description" rows="2" x-model="form.description"
-                                  class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                                  class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-teal-500 focus:ring-teal-500"
                                   placeholder="Any details to remember"></textarea>
                     </div>
                 </div>
@@ -292,7 +292,7 @@
                         Cancel
                     </button>
                     <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors"
+                            class="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors"
                             x-text="form.id ? 'Save changes' : 'Add date'"></button>
                 </div>
             </form>
@@ -312,7 +312,7 @@
                            @focus="$event.target.select()">
                     <button type="button"
                             @click="navigator.clipboard.writeText(url); copied = true; setTimeout(() => copied = false, 2000)"
-                            class="shrink-0 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">
+                            class="shrink-0 px-3 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors">
                         <span x-show="!copied">Copy</span>
                         <span x-show="copied" x-cloak>Copied!</span>
                     </button>
