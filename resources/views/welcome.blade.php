@@ -69,9 +69,7 @@
             <div class="flex items-center justify-between h-16">
                 {{-- Logo --}}
                 <a href="/" class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 bg-teal-600 rounded-xl flex items-center justify-center">
-                        <span class="text-white font-bold text-base">L</span>
-                    </div>
+                    <img src="{{ asset('icons/icon-192.png') }}" alt="LifeOS logo" class="w-9 h-9 rounded-xl shadow-sm">
                     <span class="text-xl font-semibold text-gray-900 tracking-tight">LifeOS</span>
                 </a>
 
@@ -132,6 +130,9 @@
     <section class="hero-gradient pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center">
+                {{-- Logo --}}
+                <img src="{{ asset('icons/icon-192.png') }}" alt="LifeOS" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl mx-auto mb-6 shadow-lg glow-teal">
+
                 {{-- Badge --}}
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 border border-teal-100 mb-8">
                     <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
@@ -582,9 +583,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-7 h-7 bg-teal-600 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-xs">L</span>
-                    </div>
+                    <img src="{{ asset('icons/icon-192.png') }}" alt="LifeOS logo" class="w-7 h-7 rounded-lg">
                     <span class="text-sm font-semibold text-gray-900">LifeOS</span>
                 </div>
                 <p class="text-sm text-gray-400">&copy; {{ date('Y') }} LifeOS. Built for ambitious people.</p>
