@@ -60,20 +60,8 @@
                 </div>
             </div>
 
-            {{-- Quick add (the "search" pill) --}}
-            <form method="POST" action="{{ route('tasks.store') }}" class="mt-5">
-                @csrf
-                <input type="hidden" name="due_date" value="{{ today()->format('Y-m-d') }}">
-                <input type="hidden" name="effort" value="medium">
-                <label class="flex items-center gap-2.5 bg-white rounded-2xl px-4 h-12 shadow-sm shadow-teal-900/10">
-                    <x-icon name="plus" class="w-5 h-5 text-teal-500 shrink-0" />
-                    <input type="text" name="title" placeholder="Quick add a task for today…" required
-                           class="flex-1 min-w-0 border-0 bg-transparent text-sm text-gray-900 placeholder-gray-400 focus:ring-0 p-0">
-                </label>
-            </form>
-
             {{-- Quick action chips --}}
-            <div class="grid grid-cols-5 gap-1 mt-5">
+            <div class="grid grid-cols-5 gap-1 mt-6">
                 @foreach($chips as $chip)
                     <a href="{{ $chip['route'] }}" class="flex flex-col items-center gap-1.5 group">
                         <span class="w-12 h-12 rounded-full bg-white/15 backdrop-blur flex items-center justify-center group-active:bg-white/25 transition">
@@ -182,7 +170,7 @@
                             <x-icon name="check-square" class="w-5 h-5 text-emerald-500" />
                         </span>
                         <p class="text-sm font-medium text-gray-900 dark:text-white">All clear for today</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Add a task above to get going.</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Tap + to add your first task.</p>
                     </div>
                 @else
                     <div class="space-y-0.5">
@@ -290,6 +278,32 @@
                 </div>
             </a>
         </div>
+
+        {{-- Floating action button — quick add a task. Sits above the bottom nav. --}}
+        <button type="button" @click="$dispatch('open-modal-quick-add')" aria-label="Add task"
+                class="fixed right-5 z-40 w-14 h-14 rounded-full bg-teal-600 text-white shadow-lg shadow-teal-900/30 flex items-center justify-center active:scale-95 active:bg-teal-700 transition"
+                style="bottom: calc(env(safe-area-inset-bottom) + 5rem);">
+            <x-icon name="plus" class="w-7 h-7" />
+        </button>
+
+        {{-- Quick-add task sheet --}}
+        <x-ui.modal name="quick-add" maxWidth="md">
+            <form method="POST" action="{{ route('tasks.store') }}" class="p-5"
+                  x-data x-init="$watch('show', v => v && $nextTick(() => $refs.quickAddTitle.focus()))">
+                @csrf
+                <input type="hidden" name="due_date" value="{{ today()->format('Y-m-d') }}">
+                <input type="hidden" name="effort" value="medium">
+                <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-3">Add a task for today</h2>
+                <input type="text" name="title" x-ref="quickAddTitle" placeholder="What needs doing?" required
+                       class="w-full rounded-xl border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:border-teal-500 focus:ring-teal-500 focus:bg-white dark:focus:bg-gray-900">
+                <div class="flex items-center gap-2 mt-4">
+                    <button type="button" @click="$dispatch('close-modal-quick-add')"
+                            class="flex-1 px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-xl active:bg-gray-200 dark:active:bg-gray-700 transition">Cancel</button>
+                    <button type="submit"
+                            class="flex-1 px-4 py-2.5 text-sm font-semibold text-white bg-teal-600 rounded-xl active:bg-teal-700 transition">Add task</button>
+                </div>
+            </form>
+        </x-ui.modal>
     </div>
 
     {{-- ============================================================= --}}
