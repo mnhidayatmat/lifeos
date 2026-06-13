@@ -1,6 +1,6 @@
 {{-- PWA: web manifest, theme color, and iOS home-screen meta. Included in every layout head. --}}
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#6366f1">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#14b8a6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
 
 {{-- iOS / Safari add-to-home-screen --}}

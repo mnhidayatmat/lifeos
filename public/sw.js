@@ -8,7 +8,7 @@
  *  - Only same-origin GET requests are handled. POST/PUT/etc. always hit the network.
  */
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const PRECACHE = `lifeos-precache-${VERSION}`;
 const RUNTIME = `lifeos-runtime-${VERSION}`;
 
