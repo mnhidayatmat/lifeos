@@ -3,6 +3,11 @@
     <x-slot name="title">Home</x-slot>
     {{-- On mobile the gradient hero below owns the top of the screen, so suppress the white topbar there. --}}
     <x-slot name="hideMobileTopbar">true</x-slot>
+    {{-- Make the PWA status bar match the hero's top colour (teal-600) so they read as one tone.
+         black-translucent lets the gradient flow under the status bar instead of a separate band. --}}
+    <x-slot name="themeColor">#0d9488</x-slot>
+    <x-slot name="themeColorDark">#0d9488</x-slot>
+    <x-slot name="iosStatusBarStyle">black-translucent</x-slot>
 
     @php
         $firstName  = explode(' ', trim(Auth::user()->name))[0] ?: 'there';
